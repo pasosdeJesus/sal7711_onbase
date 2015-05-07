@@ -1,0 +1,35 @@
+<div class='alert alert-info fade in' data-alert='alert'>
+  <h2>Registro</h2>
+  <p>
+  Por el momento sólo pueden registrarse automáticamente personas
+  con correos de algunas organizaciones con plan corporativo.
+  </p>
+  Si su organización requiere un plan corporativo por favor
+  emplee el formulario de <%= link_to "Contacto", new_contacto_path %>.<br>
+</div>
+
+
+<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :email, 
+      label: 'Correo electrónico',
+      :required => true, :autofocus => true 
+    %>
+    <%= f.input :password, 
+      label: 'Clave',
+      :required => true 
+    %>
+    <%= f.input :password_confirmation, 
+      label: 'Confirmación de Clave',
+      :required => true 
+    %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, "Registrarse" %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>

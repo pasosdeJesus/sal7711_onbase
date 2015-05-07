@@ -1,0 +1,46 @@
+<div class="page-header">
+  <h1><%=t '.title', :default => "Búsqueda" %></h1>
+</div>
+
+<div id="filtro" class="pull-left">
+  <%= form_tag(buscar_path, method: "get", remote: true) do %>
+    Rango de Fechas:
+    <%= text_field_tag 'fechaini', @fechaini, maxlength: 10, size: 12, 
+		"data-behaviour" => "datepicker", "data-contarautomatico" => "",
+		value: @fechaini
+    %> 
+    -
+    <%= text_field_tag 'fechafin', @fechafin, maxlength: 10, size: 12, 
+    "data-behaviour" => "datepicker", "data-contarautomatico" => "" 
+    %>
+	<br>
+		Municipio: 
+    <%= text_field_tag 'municipio', @municipio, maxlength: 20, size: 20 %>
+	<br>
+		Departamento: 
+    <%= text_field_tag 'departamento', @departamento, maxlength: 20, size: 20 %>
+	<br>
+		Código Principal: 
+    <%= text_field_tag 'codigo1', @codigo1, maxlength: 20, size: 20 %>
+	<br>
+		Código Secundario 1: 
+    <%= text_field_tag 'codigo2', @codigo2, maxlength: 20, size: 20 %>
+	<br>
+		Código Secundario 2: 
+    <%= text_field_tag 'codigo3', @codigo3, maxlength: 20, size: 20 %>
+	<br>
+		Fuente: 
+    <%= text_field_tag 'fuente', @fuente, maxlength: 20, size: 20 %>
+	<br>
+		Página Fuente: 
+    <%= text_field_tag 'pagina', @pagina, maxlength: 20, size: 20 %>
+	<br>
+
+    <%= submit_tag("Buscar") %>
+  <% end %>
+</div>
+
+<div id="resultados" class="pull-right">
+	<%= render 'resultados_busqueda' %>
+</div> <!-- id: resultados -->
+

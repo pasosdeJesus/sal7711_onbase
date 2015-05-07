@@ -1,0 +1,16 @@
+Registros: <%= @numregistros %>
+<table class="table table-striped">
+  <thead>
+		<tr><th>Artículos</th></tr>
+  </thead>
+  <tbody>
+    <% @entradas.try(:each) do |fila| %>
+			<tr><td><a href="/buscar/<%= CGI.escapeHTML(fila['itemnum'].to_s) %>">
+				<%= CGI.escapeHTML(fila['itemname'].to_s) %>
+			</a></td></tr>
+    <% end %>
+  </tbody>
+</table>
+<div id="enlaces_paginacion">
+	<%= pagina @entradas, { param_name: :pag } %>
+</div>
