@@ -8,9 +8,9 @@ GIT
 
 GIT
   remote: git://github.com/pasosdeJesus/sip.git
-  revision: 2f607e8421bc5a578f66b4249491615b3c23db62
+  revision: d79d618bb572e0439d807b59969295be1bf0de94
   specs:
-    sip (2.0.a4)
+    sip (2.0.a5)
       devise
       jquery-rails
       rails
