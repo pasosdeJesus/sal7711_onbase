@@ -1,0 +1,10 @@
+
+es:
+  attributes:
+  activerecord:
+    attributes:
+      "organizacion":
+        autoregistro: Registro automático 
+        dominiocorreo: Dominio del correo electrónico para registro automático
+        pexcluyecorreo: Patro de correo por excluir de registro automático
+

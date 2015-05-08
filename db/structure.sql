@@ -641,6 +641,10 @@ CREATE TABLE usuario (
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
     regionsjr_id integer,
+    confirmation_token character varying,
+    confirmed_at timestamp without time zone,
+    confirmation_sent_at timestamp without time zone,
+    unconfirmed_email character varying,
     CONSTRAINT usuario_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion))),
     CONSTRAINT usuario_rol_check CHECK (((rol >= 1) AND (rol <= 6)))
 );
@@ -829,6 +833,13 @@ ALTER TABLE ONLY usuario
 
 
 --
+-- Name: index_usuario_on_confirmation_token; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_usuario_on_confirmation_token ON usuario USING btree (confirmation_token);
+
+
+--
 -- Name: index_usuario_on_email; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1008,5 +1019,7 @@ INSERT INTO schema_migrations (version) VALUES ('20150503120915');
 
 INSERT INTO schema_migrations (version) VALUES ('20150504161548');
 
-INSERT INTO schema_migrations (version) VALUES ('2015050704570000');
+INSERT INTO schema_migrations (version) VALUES ('20150507045700');
+
+INSERT INTO schema_migrations (version) VALUES ('20150507202524');
 

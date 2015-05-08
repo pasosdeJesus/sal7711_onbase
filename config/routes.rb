@@ -19,6 +19,16 @@ Rails.application.routes.draw do
 
   resource "contacto", only: [:new, :create]
 
+  namespace :admin do
+    Ability.tablasbasicas.each do |t|
+      if (t[0] == "") 
+        c = t[1].pluralize
+        resources c.to_sym, 
+          path_names: { new: 'nueva', edit: 'edita' }
+      end
+    end
+  end
+
   root 'sip/hogar#index'
   mount Sip::Engine => "/", as: 'sip'
 

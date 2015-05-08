@@ -6,12 +6,20 @@ class BuscarController < ApplicationController
 	#before_action :set_caso, only: [:show, :edit, :update, :destroy]
 
 	# Conexión a base de datos
-	@@hbase = {:username => 'hsi', :password => 'wstinol', 
-					 :host => '192.168.1.4', :timeout => 30}
+	@@hbase = {:username => ENV["USUARIO_HBASE"],
+            :password => ENV["CLAVE_HBASE"],
+					  :host => ENV["IP_HBASE"], 
+            :timeout => 30
+  }
 	# Conexión a directorio compartido con archivos
-	@@parsmb = {domain: 'DOMINIOCINEP.local', host: '192.168.1.4', 
-						 share: 'OnBaseData1$', user: 'sig', password: 'semanasanta', 
-						 port: 445}
+	@@parsmb = {
+    domain: ENV['DOMINIO'],
+    host: ENV['IP_HBASE'],
+    share: ENV['CARPETA'],
+    user: ENV['USUARIO_DOMINIO'],
+    password: ENV['CLAVE_DOMINIO'],
+    port: 445
+  }
   # entradas por página
 	@@porpag = 20 
 

@@ -17,6 +17,14 @@ class Ability  < Sip::Ability
       ["", 0] #5
     ]
 
+    @@tablasbasicas = Sip::Ability::TABLAS_SIP + [
+      ['', 'organizacion']
+    ]
+
+    @@basicas_seq_con_id = Sip::Ability::TABLAS_SIP_SEQID + [
+      ['', 'organizacion']
+    ]
+      
 
     # Se definen habilidades con cancancan
     def initialize(usuario)

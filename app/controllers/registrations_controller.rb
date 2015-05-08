@@ -8,6 +8,7 @@ class RegistrationsController < Devise::RegistrationsController
     params[:usuario][:nusuario] = params[:usuario][:email].gsub(/[@.]/,"_")
     params[:usuario][:fechacreacion] = Date.today
     super
+    #byebug
   end
 
   private

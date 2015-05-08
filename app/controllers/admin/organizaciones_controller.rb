@@ -1,6 +1,6 @@
 # encoding: UTF-8
 module Admin
-	class OrganizacionesController < BasicasController
+	class OrganizacionesController < Sip::Admin::BasicasController
 		before_action :set_organizacion, 
 			only: [:show, :edit, :update, :destroy]
 		load_and_authorize_resource  class: Organizacion
@@ -14,7 +14,9 @@ module Admin
 		end
 
 		def atributos_index
-			["id", "nombre", "observaciones", "fechacreacion", "fechadeshabilitacion"]
+      ["id", "nombre", "observaciones", "autoregistro", 
+       "dominiocorreo", "pexcluyecorreo", "fechacreacion", 
+       "fechadeshabilitacion"]
 		end
 
 		def organizacion_params
