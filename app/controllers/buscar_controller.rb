@@ -80,6 +80,9 @@ class BuscarController < ApplicationController
 		if(params[:pagina] && params[:pagina] != '')
 			w += cruza_tabla_consulta(104, params[:pagina])
 		end
+    if (w == '')
+      w = " AND 1=2"
+    end
 
 		f = "FROM #{@tablas.join(", ")}
 		WHERE keyitem103.itemnum=itemdata.itemnum #{w}"
@@ -138,7 +141,6 @@ class BuscarController < ApplicationController
 			authorize! :buscar, :index
 		end
 		#byebug
-		#client = TinyTds::Client.new(:username => 'hsi', :password => 'wstinol', :host => '192.168.1.4')
 		prepara_pagina
 		respond_to do |format|
 			format.html { }

@@ -41,6 +41,8 @@
 </div>
 
 <div id="resultados" class="pull-right">
-	<%= render 'resultados_busqueda' %>
+  <% if @entradas %>
+    <%= render 'resultados_busqueda' %>
+  <% end %>
 </div> <!-- id: resultados -->
 
