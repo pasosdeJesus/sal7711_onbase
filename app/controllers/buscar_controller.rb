@@ -53,29 +53,31 @@ class BuscarController < ApplicationController
 		w = ""
 		if (params[:fechaini] && params[:fechaini] != '')
 			pfi = @client.escape(params[:fechaini])
-			w = " AND keyvaluedate>='#{pfi}'"
+      pfid = Date.strptime(pfi, '%d-%m-%Y')
+			w = " AND keyvaluedate>='#{pfid.strftime('%Y-%m-%d')}'"
 		end
 		if(params[:fechafin] && params[:fechafin] != '')
 			pff = @client.escape(params[:fechafin])
-		 	w += " AND keyvaluedate<='#{pff}'"
+      pffd = Date.strptime(pff, '%d-%m-%Y')
+		 	w += " AND keyvaluedate<='#{pffd.strftime('%Y-%m-%d')}'"
 		end
-		if(params[:municipio] && params[:municipio] != '')
-			w += cruza_tabla_consulta(110, params[:municipio])
+		if(params[:municipio] && params[:municipio][:nombre] != '')
+			w += cruza_tabla_consulta(110, params[:municipio][:nombre])
 		end
-		if(params[:departamento] && params[:departamento] != '')
-			w += cruza_tabla_consulta(108, params[:departamento])
+		if(params[:departamento] && params[:departamento][:nombre] != '')
+			w += cruza_tabla_consulta(108, params[:departamento][:nombre])
 		end
-		if(params[:codigo1] && params[:codigo1] != '')
-			w += cruza_tabla_consulta(112, params[:codigo1])
+		if(params[:codigo1] && params[:codigo1][:codigo] != '')
+			w += cruza_tabla_consulta(112, params[:codigo1][:codigo])
 		end
-		if(params[:codigo2] && params[:codigo2] != '')
-			w += cruza_tabla_consulta(113, params[:codigo2])
+		if(params[:codigo2] && params[:codigo2][:codigo] != '')
+			w += cruza_tabla_consulta(113, params[:codigo2][:codigo])
 		end
-		if(params[:codigo3] && params[:codigo3] != '')
-			w += cruza_tabla_consulta(114, params[:codigo3])
+		if(params[:codigo3] && params[:codigo3][:codigo] != '')
+			w += cruza_tabla_consulta(114, params[:codigo3][:codigo])
 		end
-		if(params[:fuente] && params[:fuente] != '')
-			w += cruza_tabla_consulta(101, params[:fuente])
+		if(params[:fuente] && params[:fuente][:nombre] != '')
+			w += cruza_tabla_consulta(101, params[:fuente][:nombre])
 		end
 		if(params[:pagina] && params[:pagina] != '')
 			w += cruza_tabla_consulta(104, params[:pagina])
@@ -111,7 +113,7 @@ class BuscarController < ApplicationController
 			#AND RowNum < #{paginador.offset + paginador.per_page}"
 	
 			c="SELECT itemdata.itemnum, itemdata.itemname #{f} 
-				ORDER BY itemdata.itemname
+				ORDER BY keyitem103.keyvaluedate DESC
 				OFFSET #{paginador.offset} ROWS
 				FETCH NEXT #{paginador.per_page} ROWS ONLY"
 		  puts "OJO q=#{c}"

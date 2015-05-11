@@ -15,22 +15,47 @@
     %>
 	<br>
 		Municipio: 
-    <%= text_field_tag 'municipio', @municipio, maxlength: 20, size: 20 %>
+    <%= collection_select :municipio, :nombre, 
+      Sip::Municipio.from('sip_municipio, sip_departamento').where("sip_departamento.id=sip_municipio.id_departamento AND sip_departamento.id_pais= '170'").habilitados,
+      :nombre, :nombre, { :include_blank => "" }
+    %>
 	<br>
 		Departamento: 
-    <%= text_field_tag 'departamento', @departamento, maxlength: 20, size: 20 %>
+    <%= collection_select :departamento, :nombre, 
+      Sip::Departamento.where(id_pais: 170).habilitados, 
+      :nombre, :nombre, { :include_blank => "" },
+      { style: 'width: 300px' }
+    %>
 	<br>
-		Código Principal: 
-    <%= text_field_tag 'codigo1', @codigo1, maxlength: 20, size: 20 %>
+    Código Principal: 
+   <%= collection_select :codigo1, :codigo, 
+      Sal7711Gen::Categoriaprensa.where(fechadeshabilitacion: nil).order(:codigo), 
+      :codigo, lambda { |r| r.codigo + ' ' + r.nombre}, 
+      { :include_blank => ""} ,
+      { style: 'width: 300px' }
+    %>
 	<br>
-		Código Secundario 1: 
-    <%= text_field_tag 'codigo2', @codigo2, maxlength: 20, size: 20 %>
+    Código Secundario 1: 
+    <%= collection_select :codigo2, :codigo, 
+      Sal7711Gen::Categoriaprensa.where(fechadeshabilitacion: nil).order(:codigo), 
+      :codigo, lambda { |r| r.codigo + ' ' + r.nombre}, 
+      { :include_blank => "" },
+      { style: 'width: 300px' }
+    %>
 	<br>
-		Código Secundario 2: 
-    <%= text_field_tag 'codigo3', @codigo3, maxlength: 20, size: 20 %>
+  Código Secundario 2: 
+    <%= collection_select :codigo3, :codigo, 
+      Sal7711Gen::Categoriaprensa.where(fechadeshabilitacion: nil).order(:codigo), 
+      :codigo, lambda { |r| r.codigo + ' ' + r.nombre}, 
+      { :include_blank => "" },
+      { style: 'width: 300px' }
+    %>
 	<br>
-		Fuente: 
-    <%= text_field_tag 'fuente', @fuente, maxlength: 20, size: 20 %>
+    Fuente: 
+    <%= collection_select :fuente, :nombre, 
+      Sip::Fuenteprensa.habilitados, 
+      :nombre, :nombre, { :include_blank => "" }
+    %>
 	<br>
 		Página Fuente: 
     <%= text_field_tag 'pagina', @pagina, maxlength: 20, size: 20 %>

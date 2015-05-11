@@ -4,7 +4,7 @@
 
 $(document).on 'ready page:load',  -> 
   $('[data-behaviour~=datepicker]').datepicker({
-    format: 'yyyy-mm-dd'
+    format: 'dd-mm-yyyy'
     autoclose: true
     todayHighlight: true
     language: 'es'	
