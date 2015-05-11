@@ -13,6 +13,17 @@ Archivo de Prensa
 
 Puede consultar como instalar estos componentes en: http://dhobsd.pasosdejesus.org/index.php?id=Ruby+on+Rails+en+OpenBSD
 
+Se requiere además freetds:
+sudo pkg_add freetds
+
+Y la gema tiny_tds en su versión 0.6.3, en el momento de este escrito esa
+versión no ha sido publicada, pero la rama master de sus fuentes en github
+sirven (las versiones 0.6.2 y anteriores presentan problemas para conexiones 
+como las que se hacen).
+
+Se deben clonar el repositorio, generar la gema e instalarla.
+
+
 
 ### Arquitectura
 

@@ -38,7 +38,7 @@ Para sacar estructura con MS-SQL Manager
 
 # Usar base MS-SQL-Server desde Unix
 
-Recomendamos que instale sqsh
+Recomendamos que instale sqsh (sudo pkg_add sqsh en adJ)
 
 Una vez instalado, si por ejemplo la IP del servidor MS-SQL es 192.168.10.2
 y el usuario de la base empleada por OnBase es hsi:
@@ -60,7 +60,7 @@ que estan parcialmente llenas, pero la mayoría vacías.
 
 ** transactionxlog,3708768. Registra vistas de documentos
 ** itemdatapage,546699	Registra donde esta cada item
-** itemdata,532376		Items
+** itemdata,532376	Items
 **keyxitem104,525316	Cruza items y keytable104 (pagina)
 ** keyxitem101,525293	Cruza items y keytable101 (fuente --incluye errores como ELSIGLO, ELIEMPO)
 ** keyitem103,525174	Referencia items y fechas
@@ -81,34 +81,34 @@ que estan parcialmente llenas, pero la mayoría vacías.
 ** userenvscreen,2661	Parecen detalles de escanner usado
 ** envelopexitem,2368	Cruza items con sobres (com etiquetas) de la tabla envelopes
 ** keysetdata104,2180	Ciudades
-** keyxitem1,1690		Cruza items con keytable1 (archivo)
+** keyxitem1,1690	Cruza items con keytable1 (archivo)
 ** keytable110,1342	Municipio?
 ** usergfiletype,1301	Cruza tipos de archivo con grupos de usuario
 ** hl7segmentfield,1141	Campos posibles (para otras bases)
 ** keysetdata103,1091	Relaciona ks111, ks110, ks109 departamentos, municipios
 ** keytable111,1017	Codigos de municipio?
-** maxnumkeys,937		Máximos para algunos tipos de campos (folder:100, datos item: 554386, etc.)
-** mailxitem,933		Cruza correos e items (?)
+** maxnumkeys,937	Máximos para algunos tipos de campos (folder:100, datos item: 554386, etc.)
+** mailxitem,933	Cruza correos e items (?)
 ** adminlog,822		Bitacora admin de 17.May.2006 a la fecha
 ** chtlistcolconfig,686	Configuracion de columnas ?
-** productsold,674		Productos 
+** productsold,674	Productos 
 ** hl7msgxsegment,491	Relaciona mensajes con segmentos en hl7
 ** registeredusers,482	Usuarios registrados
 ** chtsearchfieldcfg,422	relaciona campos con contextos en interfaz y pos. busq?
-** wkstmonitor,419		Monitor de estaciones que se conectan
-** mailtable,394		Correos
-** keytable1,365		Archivos definidos en AP
+** wkstmonitor,419	Monitor de estaciones que se conectan
+** mailtable,394	Correos
+** keytable1,365	Archivos definidos en AP
 ** regusersproducts,356	Parece bitacora de actualizaciones
 ** physicalplatter,345	Relaciona numeros de plato fisico y logico con unidades
-** configlog,338		Bitacora de dialogos especiales (advertencias, licencias)
-** keytable112,326		Categoria 1
-** keytable113,324		Categoria 2
+** configlog,338	Bitacora de dialogos especiales (advertencias, licencias)
+** keytable112,326	Categoria 1
+** keytable113,324	Categoria 2
 ** rrjob,319		Bitacoras de tareas hasta 24.Feb.2009
 ** usergroupconfig,310	Relaciona grupos con tipos de documenots
 ** usermail,272		Relaciona emisor, receptor y mensaje en correos
 ** passwordhistory,251	Bitacora de claves anteriores mantenidas con fecha	 de cambio y condensado de clave 
 ** pagereference,238	Cruza items con referencia (num. pag, linea inicial)
-** keytable114,226		Categoria 3
+** keytable114,226	Categoria 3
 ** edifieldxpath,225	
 ** ediparsefields,186
 ** doccheckout,168
@@ -346,4 +346,46 @@ CREATE TABLE [hsi].[itemdatapage](
 	[imagewidth] [int] NULL
 ) ON [PRIMARY]
 ```
+
+Puede extraer la información de una tabla asi:
+
+OnBase.1> select * from keyxitem108 
+OnBase.2> \go > /tmp/keyxitem108
+
+La información extraida puede convertirse a SQL para insertar en otra base asi:
+
+CREATE TABLE tmp_onbase_keytable108 (
+        keywordnum      INTEGER PRIMARY KEY,
+        keyvaluechar  VARCHAR(100)
+);
+
+
+grep "^ *[0-9][0-9]* .*" keytable108 | sed -e  "s/^ *\([0-9]*\) \(.*[^ ]\) *$/INSERT INTO tmp_onbase_keytable108 VALUES ('\1', '\2');/g" > inserta.sql
+recode latin1..utf8 inserta.sql
+
+CREATE TABLE tmp_onbase_keyxitem108 (
+	itemnum	INTEGER,
+	keywordnum INTEGER,
+	keysetnum  INTEGER
+);
+
+grep "^ *[0-9][0-9]* .*" keyxitem108 | sed -e  "s/^ *\([0-9]*\) \([0-9]*\) \([0-9]*\) *$/INSERT INTO tmp_onbase_keyxitem108 VALUES ('\1', '\2', '\3');/g" > inserta.sql
+recode latin1..utf8 inserta.sql
+
+Para el ejemplo de las tablas antes mostrada se debería repetir con:
+- Pagina 104
+- Fuente 101
+- Cat 1  112
+- Cat 2  113
+- Cat 3  114
+- Depto  108
+- Mcpio  110
+- Fecha  103
+
+# Usar base MS-SQL-Server desde Ruby
+
+Emplear la gema tiny_tds
+
+Ver detalles de su instalación en README.md
+
 

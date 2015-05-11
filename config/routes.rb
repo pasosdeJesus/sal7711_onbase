@@ -19,6 +19,10 @@ Rails.application.routes.draw do
 
   resource "contacto", only: [:new, :create]
 
+  root 'sip/hogar#index'
+  mount Sal7711Gen::Engine => "/", as: 'sal7711_gen'
+  mount Sip::Engine => "/", as: 'sip'
+
   namespace :admin do
     Ability.tablasbasicas.each do |t|
       if (t[0] == "") 
@@ -29,7 +33,5 @@ Rails.application.routes.draw do
     end
   end
 
-  root 'sip/hogar#index'
-  mount Sip::Engine => "/", as: 'sip'
 
 end

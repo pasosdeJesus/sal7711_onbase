@@ -18,10 +18,12 @@ class Ability  < Sip::Ability
     ]
 
     @@tablasbasicas = Sip::Ability::TABLAS_SIP + [
+      ['Sal7711Gen', 'categoriaprensa'],
       ['', 'organizacion']
     ]
 
     @@basicas_seq_con_id = Sip::Ability::TABLAS_SIP_SEQID + [
+      ['Sal7711Gen', 'categoriaprensa'],
       ['', 'organizacion']
     ]
       

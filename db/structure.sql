@@ -197,6 +197,41 @@ ALTER SEQUENCE organizacion_id_seq OWNED BY organizacion.id;
 
 
 --
+-- Name: sal7711_gen_categoriaprensa; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE sal7711_gen_categoriaprensa (
+    id integer NOT NULL,
+    codigo character varying(15),
+    nombre character varying(500),
+    observaciones character varying(5000),
+    fechacreacion date,
+    fechadeshabilitacion date,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: sal7711_gen_categoriaprensa_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE sal7711_gen_categoriaprensa_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: sal7711_gen_categoriaprensa_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE sal7711_gen_categoriaprensa_id_seq OWNED BY sal7711_gen_categoriaprensa.id;
+
+
+--
 -- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -324,6 +359,40 @@ CREATE TABLE sip_etiqueta (
     updated_at timestamp without time zone,
     CONSTRAINT etiqueta_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
 );
+
+
+--
+-- Name: sip_fuenteprensa; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE sip_fuenteprensa (
+    id integer NOT NULL,
+    nombre character varying(500),
+    observaciones character varying(5000),
+    fechacreacion date,
+    fechadeshabilitacion date,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: sip_fuenteprensa_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE sip_fuenteprensa_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: sip_fuenteprensa_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE sip_fuenteprensa_id_seq OWNED BY sip_fuenteprensa.id;
 
 
 --
@@ -600,6 +669,109 @@ CREATE TABLE sip_ubicacion (
 
 
 --
+-- Name: tmp_onbase_keytable101; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE tmp_onbase_keytable101 (
+    keywordnum integer NOT NULL,
+    keyvaluechar character varying(100)
+);
+
+
+--
+-- Name: tmp_onbase_keytable104; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE tmp_onbase_keytable104 (
+    keywordnum integer NOT NULL,
+    keyvaluechar character varying(100)
+);
+
+
+--
+-- Name: tmp_onbase_keytable108; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE tmp_onbase_keytable108 (
+    keywordnum integer NOT NULL,
+    keyvaluechar character varying(100)
+);
+
+
+--
+-- Name: tmp_onbase_keytable110; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE tmp_onbase_keytable110 (
+    keywordnum integer NOT NULL,
+    keyvaluechar character varying(100)
+);
+
+
+--
+-- Name: tmp_onbase_keytable112; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE tmp_onbase_keytable112 (
+    keywordnum integer NOT NULL,
+    keyvaluechar character varying(100)
+);
+
+
+--
+-- Name: tmp_onbase_keytable113; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE tmp_onbase_keytable113 (
+    keywordnum integer NOT NULL,
+    keyvaluechar character varying(100)
+);
+
+
+--
+-- Name: tmp_onbase_keytable114; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE tmp_onbase_keytable114 (
+    keywordnum integer NOT NULL,
+    keyvaluechar character varying(100)
+);
+
+
+--
+-- Name: tmp_onbase_keyxitem101; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE tmp_onbase_keyxitem101 (
+    itemnum integer,
+    keywordnum integer,
+    keysetnum integer
+);
+
+
+--
+-- Name: tmp_onbase_keyxitem104; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE tmp_onbase_keyxitem104 (
+    itemnum integer,
+    keywordnum integer,
+    keysetnum integer
+);
+
+
+--
+-- Name: tmp_onbase_keyxitem108; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE tmp_onbase_keyxitem108 (
+    itemnum integer,
+    keywordnum integer,
+    keysetnum integer
+);
+
+
+--
 -- Name: usuario_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -661,6 +833,20 @@ ALTER TABLE ONLY organizacion ALTER COLUMN id SET DEFAULT nextval('organizacion_
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY sal7711_gen_categoriaprensa ALTER COLUMN id SET DEFAULT nextval('sal7711_gen_categoriaprensa_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sip_fuenteprensa ALTER COLUMN id SET DEFAULT nextval('sip_fuenteprensa_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY sip_tdocumento ALTER COLUMN id SET DEFAULT nextval('sip_tdocumento_id_seq'::regclass);
 
 
@@ -713,6 +899,14 @@ ALTER TABLE ONLY sip_persona_trelacion
 
 
 --
+-- Name: sal7711_gen_categoriaprensa_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY sal7711_gen_categoriaprensa
+    ADD CONSTRAINT sal7711_gen_categoriaprensa_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: sip_clase_id_key; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -761,6 +955,14 @@ ALTER TABLE ONLY sip_departamento
 
 
 --
+-- Name: sip_fuenteprensa_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY sip_fuenteprensa
+    ADD CONSTRAINT sip_fuenteprensa_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: sip_municipio_id_departamento_id_munlocal_key; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -798,6 +1000,62 @@ ALTER TABLE ONLY sip_tclase
 
 ALTER TABLE ONLY sip_tdocumento
     ADD CONSTRAINT tdocumento_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: tmp_onbase_keytable101_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY tmp_onbase_keytable101
+    ADD CONSTRAINT tmp_onbase_keytable101_pkey PRIMARY KEY (keywordnum);
+
+
+--
+-- Name: tmp_onbase_keytable104_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY tmp_onbase_keytable104
+    ADD CONSTRAINT tmp_onbase_keytable104_pkey PRIMARY KEY (keywordnum);
+
+
+--
+-- Name: tmp_onbase_keytable108_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY tmp_onbase_keytable108
+    ADD CONSTRAINT tmp_onbase_keytable108_pkey PRIMARY KEY (keywordnum);
+
+
+--
+-- Name: tmp_onbase_keytable110_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY tmp_onbase_keytable110
+    ADD CONSTRAINT tmp_onbase_keytable110_pkey PRIMARY KEY (keywordnum);
+
+
+--
+-- Name: tmp_onbase_keytable112_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY tmp_onbase_keytable112
+    ADD CONSTRAINT tmp_onbase_keytable112_pkey PRIMARY KEY (keywordnum);
+
+
+--
+-- Name: tmp_onbase_keytable113_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY tmp_onbase_keytable113
+    ADD CONSTRAINT tmp_onbase_keytable113_pkey PRIMARY KEY (keywordnum);
+
+
+--
+-- Name: tmp_onbase_keytable114_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY tmp_onbase_keytable114
+    ADD CONSTRAINT tmp_onbase_keytable114_pkey PRIMARY KEY (keywordnum);
 
 
 --
@@ -1022,4 +1280,8 @@ INSERT INTO schema_migrations (version) VALUES ('20150504161548');
 INSERT INTO schema_migrations (version) VALUES ('20150507045700');
 
 INSERT INTO schema_migrations (version) VALUES ('20150507202524');
+
+INSERT INTO schema_migrations (version) VALUES ('20150510125926');
+
+INSERT INTO schema_migrations (version) VALUES ('20150510130031');
 

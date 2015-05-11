@@ -17,6 +17,10 @@ if (test "$?" = "0") then {
 #	exit 1;
 #} fi;
 
+if (test "$P" = "1") then {
+	grep "([0-9]" Gemfile.lock  | sed -e "s/^ */sudo NOKOGIRI_USE_SYSTEM_LIBRARIES=1 MAKE=gmake make=gmake QMAKE=qmake4 gem install /g;s/(\([0-9.a-z]*\))/ -v \1/g" > /tmp/gctmp.sh;
+	sh /tmp/gctmp.sh;
+} fi;
 if (test "$SINAC" != "1") then {
   NOKOGIRI_USE_SYSTEM_LIBRARIES=1 MAKE=gmake make=gmake QMAKE=qmake4 bundle update
 } fi;
