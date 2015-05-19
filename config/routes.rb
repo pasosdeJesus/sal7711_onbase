@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   namespace :admin do
     Ability.tablasbasicas.each do |t|
       if (t[0] == "") 
+        puts "OJO tablabasica-onbase: " + t[1]
         c = t[1].pluralize
         resources c.to_sym, 
           path_names: { new: 'nueva', edit: 'edita' }
