@@ -22,6 +22,12 @@ GIT
     cocoon (1.2.5)
 
 GIT
+  remote: git://github.com/vtamara/sambal.git
+  revision: f746b336a98e0680e7b16662a8105d36e8ecf989
+  specs:
+    sambal (0.1.3)
+
+GIT
   remote: https://github.com/kristianmandrup/jquery-ui-bootstrap-rails
   revision: 944cf4164ea511a2977f91031cc7f69d3e06e6cb
   specs:
@@ -237,7 +243,6 @@ GEM
       rspec-mocks (~> 3.2.0)
       rspec-support (~> 3.2.0)
     rspec-support (3.2.2)
-    sambal (0.1.2)
     sass (3.4.13)
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
@@ -332,7 +337,7 @@ DEPENDENCIES
   rmagick
   rspec-rails
   sal7711_gen!
-  sambal
+  sambal!
   sass
   sdoc
   simple_form

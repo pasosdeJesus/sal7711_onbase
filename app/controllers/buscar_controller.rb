@@ -166,6 +166,7 @@ class BuscarController < ApplicationController
 			smbc = Sambal::Client.new(@@parsmb)
 			@rlocal = "/tmp/" + File.basename(@ruta.gsub("\\", "/"))
 			g = smbc.get(@ruta, @rlocal)
+      smbc.close
 			m = g.message.to_s.chomp
 			is = m.index(" of size ")
 			if (is>0)
@@ -184,7 +185,6 @@ class BuscarController < ApplicationController
 					format.json { head :no_content }
 					format.js   { head :no_content }
 				end
-
 			end
 		end
 	end

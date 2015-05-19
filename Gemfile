@@ -20,7 +20,9 @@ gem 'sass'
 gem 'tiny_tds', '0.6.3' #, path: '../tiny_tds', ver README.md
 
 # sambal para extraer archivos en directorio Windows usado por OnBase
-gem "sambal"
+# gem "sambal"
+gem "sambal", github: "vtamara/sambal"
+#gem 'sambal', path: '../sambal'
 
 # Para convertir de tiff a jpg
 gem "rmagick"
