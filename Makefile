@@ -1,3 +1,3 @@
 
 valida:
-	coffee -o /tmp/ `find . -name "*coffee"`
+	coffee -o /tmp/ `find . -name "*.coffee"`
