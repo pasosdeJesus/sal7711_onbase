@@ -21,13 +21,22 @@ class Ability  < Sip::Ability
       ['Sal7711Gen', 'categoriaprensa'],
       ['', 'organizacion']
     ]
+   def self.tablasbasicas
+     # soluciona bug que ocurre solo con unicorn
+     if @@tablasbasicas.length < 13 
+       @@tablasbasicas += [['', 'organizacion']]
+     end
+     return @@tablasbasicas
+   end 
+
+
+   # puts "OJO tablasbasicas" + Ability::tablasbasicas.to_s
 
     @@basicas_seq_con_id = Sip::Ability::TABLAS_SIP_SEQID + [
       ['Sal7711Gen', 'categoriaprensa'],
       ['', 'organizacion']
     ]
-      
-
+     
     # Se definen habilidades con cancancan
     def initialize(usuario)
       # El primer argumento para can es la acción a la que se da permiso, 

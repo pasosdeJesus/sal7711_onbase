@@ -27,6 +27,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     Ability.tablasbasicas.each do |t|
+      #puts "OJO config/routes.rb, t=" + t.to_s
       if (t[0] == "") 
         c = t[1].pluralize
         resources c.to_sym, 

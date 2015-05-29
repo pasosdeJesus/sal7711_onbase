@@ -36,8 +36,17 @@ if (test "${CLAVE_DOMINIO}" = "") then {
 	echo "Definir clave en dominio en CLAVE_DOMINIO"
 	exit 1;
 } fi;
+if (test "${CLAVE_DOMINIO}" = "") then {
+	echo "Definir clave en dominio en CLAVE_DOMINIO"
+	exit 1;
+} fi;
+if (test "${SAL7711_ONBASE_SERV}" = "") then {
+	echo "Definir clave en dominio en SAL7711_ONBASE_SERV"
+	exit 1;
+} fi;
 
-sudo su ${USUARIO_AP} -c "cd /var/www/htdocs/sal7711_onbase; rake assets:precompile; echo \"Iniciando unicorn...\"; USUARIO_HBASE=${USUARIO_HBASE} CLAVE_HBASE=${CLAVE_HBASE} IP_HBASE=${IP_HBASE} DOMINIO=${DOMINIO} CARPETA='${CARPETA}' USUARIO_DOMINIO=${USUARIO_DOMINIO} CLAVE_DOMINIO=${CLAVE_DOMINIO} SECRET_KEY_BASE=${SECRET_KEY_BASE} bundle exec unicorn_rails -c ../sal7711_onbase/config/unicorn.conf.minimal.rb  -E production -D"
+sudo su ${USUARIO_AP} -c "cd /var/www/htdocs/sal7711_onbase; echo \"Iniciando unicorn...\"; SAL7711_ONBASE_SERV=${SAL7711_ONBASE_SERV} USUARIO_HBASE=${USUARIO_HBASE} CLAVE_HBASE=${CLAVE_HBASE} IP_HBASE=${IP_HBASE} DOMINIO=${DOMINIO} CARPETA='${CARPETA}' USUARIO_DOMINIO=${USUARIO_DOMINIO} CLAVE_DOMINIO=${CLAVE_DOMINIO} SECRET_KEY_BASE=${SECRET_KEY_BASE} bundle exec unicorn_rails -c ../sal7711_onbase/config/unicorn.conf.minimal.rb  -E production -D"
+#sudo su ${USUARIO_AP} -c "cd /var/www/htdocs/sal7711_onbase; rake assets:precompile; echo \"Iniciando unicorn...\"; SAL7711_ONBASE_SERV=${SAL7711_ONBASE_SERV} USUARIO_HBASE=${USUARIO_HBASE} CLAVE_HBASE=${CLAVE_HBASE} IP_HBASE=${IP_HBASE} DOMINIO=${DOMINIO} CARPETA='${CARPETA}' USUARIO_DOMINIO=${USUARIO_DOMINIO} CLAVE_DOMINIO=${CLAVE_DOMINIO} SECRET_KEY_BASE=${SECRET_KEY_BASE} bundle exec unicorn_rails -c ../sal7711_onbase/config/unicorn.conf.minimal.rb  -E production -D"
 
 
   
