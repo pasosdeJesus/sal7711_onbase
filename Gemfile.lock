@@ -1,21 +1,4 @@
 GIT
-  remote: git://github.com/pasosdeJesus/sal7711_gen.git
-  revision: 09a49e50b7875c6168084376eb88690b5aef90d0
-  specs:
-    sal7711_gen (1.0.a2)
-      rails
-      sip
-
-GIT
-  remote: git://github.com/pasosdeJesus/sip.git
-  revision: ee81698411ed7fe6c5888dae04a0566f00ea0934
-  specs:
-    sip (2.0.a6)
-      devise
-      jquery-rails
-      rails
-
-GIT
   remote: git://github.com/vtamara/cocoon.git
   revision: 836a331276ea1452d63325a6662483b9f1cb28be
   specs:
@@ -32,6 +15,21 @@ GIT
   revision: 944cf4164ea511a2977f91031cc7f69d3e06e6cb
   specs:
     jquery-ui-bootstrap-rails (0.1.1)
+      rails
+
+PATH
+  remote: ../sal7711_gen
+  specs:
+    sal7711_gen (1.0.a2)
+      rails
+      sip
+
+PATH
+  remote: ../sip
+  specs:
+    sip (2.0.a6)
+      devise
+      jquery-rails
       rails
 
 GEM
@@ -74,7 +72,7 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.3.8)
     arel (6.0.0)
-    autoprefixer-rails (5.1.11)
+    autoprefixer-rails (5.2.0)
       execjs
       json
     bcrypt (3.1.10)
@@ -99,6 +97,12 @@ GEM
     capybara-webkit (1.4.1)
       capybara (>= 2.3.0, < 2.5.0)
       json
+    chosen-rails (1.4.1)
+      coffee-rails (>= 3.2)
+      compass-rails (>= 1.1.2)
+      railties (>= 3.0)
+      sass-rails (>= 3.2)
+    chunky_png (1.3.4)
     cldr-plurals-runtime-rb (1.0.0)
     climate_control (0.0.3)
       activesupport (>= 3.0)
@@ -115,8 +119,24 @@ GEM
       execjs
     coffee-script-source (1.9.1.1)
     columnize (0.9.0)
+    compass (1.0.3)
+      chunky_png (~> 1.2)
+      compass-core (~> 1.0.2)
+      compass-import-once (~> 1.0.5)
+      rb-fsevent (>= 0.9.3)
+      rb-inotify (>= 0.9)
+      sass (>= 3.3.13, < 3.5)
+    compass-core (1.0.3)
+      multi_json (~> 1.0)
+      sass (>= 3.3.0, < 3.5)
+    compass-import-once (1.0.5)
+      sass (>= 3.2, < 3.5)
+    compass-rails (2.0.4)
+      compass (~> 1.0.0)
+      sass-rails (<= 5.0.1)
+      sprockets (< 2.13)
     debug_inspector (0.0.2)
-    devise (3.5.0)
+    devise (3.5.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 3.2.6, < 5)
@@ -133,8 +153,10 @@ GEM
     factory_girl_rails (4.5.0)
       factory_girl (~> 4.5.0)
       railties (>= 3.0.0)
+    ffi (1.9.8)
     globalid (0.3.5)
       activesupport (>= 4.1.0)
+    hike (1.2.3)
     i18n (0.7.0)
     interception (0.5)
     jbuilder (2.2.16)
@@ -150,6 +172,7 @@ GEM
     kgio (2.9.3)
     launchy (2.4.3)
       addressable (~> 2.3)
+    lazybox (1.1.5)
     loofah (2.0.2)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
@@ -160,7 +183,7 @@ GEM
     method_source (0.8.2)
     mime-types (2.6.1)
     mini_portile (0.6.2)
-    minitest (5.6.1)
+    minitest (5.7.0)
     multi_json (1.11.0)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
@@ -222,6 +245,9 @@ GEM
       thor (>= 0.18.1, < 2.0)
     raindrops (0.13.0)
     rake (10.4.2)
+    rb-fsevent (0.9.5)
+    rb-inotify (0.9.5)
+      ffi (>= 0.5.0)
     rdoc (4.2.0)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
@@ -244,6 +270,12 @@ GEM
       rspec-support (~> 3.2.0)
     rspec-support (3.2.2)
     sass (3.4.14)
+    sass-rails (5.0.1)
+      railties (>= 4.0.0, < 5.0)
+      sass (~> 3.1)
+      sprockets (>= 2.8, < 4.0)
+      sprockets-rails (>= 2.0, < 4.0)
+      tilt (~> 1.1)
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
@@ -259,14 +291,18 @@ GEM
     spring (1.3.6)
     spring-commands-rspec (1.0.4)
       spring (>= 0.9.1)
-    sprockets (3.1.0)
+    sprockets (2.12.3)
+      hike (~> 1.2)
+      multi_json (~> 1.0)
       rack (~> 1.0)
+      tilt (~> 1.1, != 1.3.0)
     sprockets-rails (2.3.1)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
     thor (0.19.1)
     thread_safe (0.3.5)
+    tilt (1.4.1)
     tiny_tds (0.6.3)
     ttfunk (1.4.0)
     turbolinks (2.5.3)
@@ -314,6 +350,7 @@ DEPENDENCIES
   cancancan
   capybara
   capybara-webkit (= 1.4.1)
+  chosen-rails
   cocoon!
   codeclimate-test-reporter
   coffee-rails (~> 4.1.0)
@@ -325,6 +362,7 @@ DEPENDENCIES
   jquery-ui-bootstrap-rails!
   jquery-ui-rails
   launchy
+  lazybox
   mail_form
   paperclip (~> 4.1)
   pg
@@ -339,6 +377,7 @@ DEPENDENCIES
   sal7711_gen!
   sambal!
   sass
+  sass-rails
   sdoc
   simple_form
   sip!

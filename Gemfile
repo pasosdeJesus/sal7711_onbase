@@ -15,6 +15,12 @@ gem 'mail_form'
 # Para crear CSS
 gem 'sass'
 
+# Cuadros de selección para búsquedas
+gem 'chosen-rails'
+
+# Dialogo modal
+gem 'lazybox'
+
 # Tiny_TDS para MS-SQL usado por OnBase
 #gem "tiny_tds", '~> 0.6.3'
 gem 'tiny_tds', '0.6.3' #, path: '../tiny_tds', ver README.md
@@ -37,7 +43,7 @@ gem "prawn"
 gem "jbuilder"
 
 # SCSS para hojas de estilo
-#gem "sass-rails"#, '~> 4.0.0.rc1'
+gem "sass-rails"#, '~> 4.0.0.rc1'
 
 # Uglifier comprime recursos Javascript
 gem "uglifier", '>= 1.3.0'
@@ -86,11 +92,11 @@ gem "tzinfo"
 gem "tzinfo-data"
 
 # Motor de sistemas de información estilo Pasos de Jesús
-gem 'sip', github: 'pasosdeJesus/sip'
-#gem 'sip', path: '../sip'
+#gem 'sip', github: 'pasosdeJesus/sip'
+gem 'sip', path: '../sip'
 
-gem 'sal7711_gen', github: 'pasosdeJesus/sal7711_gen'
-#gem 'sal7711_gen', path: '../sal7711_gen'
+#gem 'sal7711_gen', github: 'pasosdeJesus/sal7711_gen'
+gem 'sal7711_gen', path: '../sal7711_gen'
 
 
 group :doc do
