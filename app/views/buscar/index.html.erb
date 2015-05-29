@@ -13,55 +13,32 @@
     <%= text_field_tag 'fechafin', @fechafin, maxlength: 10, size: 12, 
     "data-behaviour" => "datepicker", "data-contarautomatico" => "" 
     %>
-	<br>
-		Municipio: 
-    <%= collection_select :municipio, :nombre, 
-      Sip::Municipio.from('sip_municipio, sip_departamento').where("sip_departamento.id=sip_municipio.id_departamento AND sip_departamento.id_pais= '170'").habilitados,
-      :nombre, :nombre, { :include_blank => "" }
+    <br>
+    Meses:
+    <%= select_tag "meses_rapido", options_for_select(@meses), 
+      {multiple: true, size: 7} 
     %>
+    <br>
+    Municipio / Departamento: 
+    <%= text_field_tag 'mundep', nil, maxlength: 20, size: 20 %>
+    <%= hidden_field_tag 'mundep_id' %>
 	<br>
-		Departamento: 
-    <%= collection_select :departamento, :nombre, 
-      Sip::Departamento.where(id_pais: 170).habilitados, 
-      :nombre, :nombre, { :include_blank => "" },
-      { style: 'width: 300px' }
-    %>
-	<br>
-    Código Principal: 
-   <%= collection_select :codigo1, :codigo, 
-      Sal7711Gen::Categoriaprensa.where(fechadeshabilitacion: nil).order(:codigo), 
-      :codigo, lambda { |r| r.codigo + ' ' + r.nombre}, 
-      { :include_blank => ""} ,
-      { style: 'width: 300px' }
-    %>
-	<br>
-    Código Secundario 1: 
-    <%= collection_select :codigo2, :codigo, 
-      Sal7711Gen::Categoriaprensa.where(fechadeshabilitacion: nil).order(:codigo), 
-      :codigo, lambda { |r| r.codigo + ' ' + r.nombre}, 
-      { :include_blank => "" },
-      { style: 'width: 300px' }
-    %>
-	<br>
-  Código Secundario 2: 
-    <%= collection_select :codigo3, :codigo, 
-      Sal7711Gen::Categoriaprensa.where(fechadeshabilitacion: nil).order(:codigo), 
-      :codigo, lambda { |r| r.codigo + ' ' + r.nombre}, 
-      { :include_blank => "" },
-      { style: 'width: 300px' }
-    %>
+  Categoria: 
+    <%= text_field_tag 'categoria', nil, maxlength: 20, size: 20 %>
+    <%= hidden_field_tag 'categoria_id' %>
 	<br>
     Fuente: 
     <%= collection_select :fuente, :nombre, 
       Sip::Fuenteprensa.habilitados, 
-      :nombre, :nombre, { :include_blank => "" }
+      :nombre, :nombre, { :include_blank => "" }, { class: 'chosen-select' }
     %>
 	<br>
 		Página Fuente: 
     <%= text_field_tag 'pagina', @pagina, maxlength: 20, size: 20 %>
 	<br>
 
-    <%= submit_tag("Buscar") %>
+    <%= submit_tag "Buscar" %>
+    <%= button_tag "Limpiar", type: :reset %>
   <% end %>
 </div>
 
