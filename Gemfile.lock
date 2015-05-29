@@ -1,4 +1,21 @@
 GIT
+  remote: git://github.com/pasosdeJesus/sal7711_gen.git
+  revision: 09a49e50b7875c6168084376eb88690b5aef90d0
+  specs:
+    sal7711_gen (1.0.a2)
+      rails
+      sip
+
+GIT
+  remote: git://github.com/pasosdeJesus/sip.git
+  revision: bfcb62d60eb1bb8c8ae5436c1c4ebaa34a6e5bfa
+  specs:
+    sip (2.0.a6)
+      devise
+      jquery-rails
+      rails
+
+GIT
   remote: git://github.com/vtamara/cocoon.git
   revision: 836a331276ea1452d63325a6662483b9f1cb28be
   specs:
@@ -15,21 +32,6 @@ GIT
   revision: 944cf4164ea511a2977f91031cc7f69d3e06e6cb
   specs:
     jquery-ui-bootstrap-rails (0.1.1)
-      rails
-
-PATH
-  remote: ../sal7711_gen
-  specs:
-    sal7711_gen (1.0.a2)
-      rails
-      sip
-
-PATH
-  remote: ../sip
-  specs:
-    sip (2.0.a6)
-      devise
-      jquery-rails
       rails
 
 GEM

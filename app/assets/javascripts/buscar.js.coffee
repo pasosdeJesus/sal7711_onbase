@@ -47,7 +47,7 @@ $(document).on 'ready page:load',  ->
   $('.chosen-select').chosen
     allow_single_deselect: true
     no_results_text: 'No hay resultados',
-    placeholder_text_singel: 'Elija una opción',
+    placeholder_text_single: 'Elija una opción',
     width: '300px'
 
   $('#mundep').on 'focusin', (e) ->

@@ -40,7 +40,7 @@ class BuscarController < ApplicationController
     end
   end
 
-  def cruza_tabla_consulta(num, valor, op='=')
+  def cruza_tabla_consulta(num, valor, op = ' = ')
     numi = num.to_i
     valore = @client.escape(valor)
     @tablas |= ["keyxitem#{numi}", "keytable#{numi}"]
@@ -85,17 +85,24 @@ class BuscarController < ApplicationController
     end
 
     if(params[:categoria_id] && params[:categoria_id] != '')
-      cod = Sal7711Gen::Categoriaprensa.find(params[:categoria_id]).codigo
+      cat = Sal7711Gen::Categoriaprensa.find(params[:categoria_id]);
+      if cat.supracategoria
+        op = ' LIKE ';
+        cod = "#{cat.codigo}%"
+      else
+        op = ' = ';
+        cod = cat.codigo.to_s
+      end
       tablaspre = @tablas
-      w1 = w + cruza_tabla_consulta(112, cod)
+      w1 = w + cruza_tabla_consulta(112, cod, op)
       f = "FROM (SELECT itemdata.*, keyitem103.keyvaluedate FROM #{@tablas.join(", ")} " +
         "WHERE keyitem103.itemnum=itemdata.itemnum #{w1}"
       @tablas = tablaspre
-      w2 = w + cruza_tabla_consulta(113, cod)
+      w2 = w + cruza_tabla_consulta(113, cod, op)
       f += " UNION SELECT itemdata.*, keyitem103.keyvaluedate FROM #{@tablas.join(", ")} " +
         "WHERE keyitem103.itemnum=itemdata.itemnum #{w2}"
       @tablas = tablaspre
-      w3 = w + cruza_tabla_consulta(114, cod)
+      w3 = w + cruza_tabla_consulta(114, cod, op)
       f += " UNION SELECT itemdata.*, keyitem103.keyvaluedate FROM #{@tablas.join(", ")} " +
         "WHERE keyitem103.itemnum=itemdata.itemnum #{w3}"
       f += ") AS sub"
