@@ -34,6 +34,7 @@ INSERT INTO sal7711_gen_categoriaprensa (id, codigo, nombre, fechacreacion, crea
 INSERT INTO sal7711_gen_categoriaprensa (id, codigo, nombre, fechacreacion, created_at, supracategoria) VALUES ('169', 'D8', 'Género, Juventud e Infancia', '2015-05-11', '2015-05-29', 't');
 INSERT INTO sal7711_gen_categoriaprensa (id, codigo, nombre, fechacreacion, created_at, supracategoria) VALUES ('176', 'D9', 'Acciones colectivas de Gremios, Empresarios,Trabajadores independientes', '2015-05-11', '2015-05-29', 't');
 INSERT INTO sal7711_gen_categoriaprensa (id, codigo, nombre, fechacreacion, created_at, supracategoria) VALUES ('182', 'D10', 'Políticas Educativas y Movilizaciones Estudiantiles', '2015-05-11', '2015-05-29', 't');
+DELETE FROM sal7711_gen_categoriaprensa WHERE id='186';
 INSERT INTO sal7711_gen_categoriaprensa (id, codigo, nombre, fechacreacion, created_at, supracategoria) VALUES ('186', 'D11', 'Conflictos Globales', '2015-05-11', '2015-05-29', 't');
 INSERT INTO sal7711_gen_categoriaprensa (id, codigo, nombre, fechacreacion, created_at, supracategoria) VALUES ('189', 'E', 'ECOLOGÍA Y AMBIENTE', '2015-05-11', '2015-05-29', 't');
 INSERT INTO sal7711_gen_categoriaprensa (id, codigo, nombre, fechacreacion, created_at, supracategoria) VALUES ('190', 'E1', 'Política Ambiental', '2015-05-11', '2015-05-29', 't');

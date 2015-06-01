@@ -63,6 +63,7 @@ class Ability  < Sip::Ability
       can :nuevo, Sip::Ubicacion
       #can :nuevo, Sip::Victima
       if usuario && usuario.rol then
+        can :read, Sal7711Gen::Categoriaprensa
         case usuario.rol 
         when Ability::ROLINV
           can :read, Sip::Ubicacion
