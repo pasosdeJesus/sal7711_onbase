@@ -232,7 +232,7 @@ class BuscarController < ApplicationController
       rutar = @client.execute(c)
       fila = rutar.first
       ruta = fila["filepath"].strip
-      @itulo = titulo = fila["itemname"].strip
+      @titulo = titulo = fila["itemname"].strip
       smbc = Sambal::Client.new(@@parsmb)
       dirl = Rails.root.join('public').to_s
       FileUtils.mkdir_p(dirl + "/assets/images/cache-articulos/")

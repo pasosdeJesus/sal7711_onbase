@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: git://github.com/pasosdeJesus/sip.git
-  revision: e3b30dba0224af4b0ead76cac38fb6f37be2b89a
+  revision: 934cfcb2c9c2dfa966c845fc8abad9ca1c8cec44
   specs:
     sip (2.0.a6)
       devise
@@ -99,9 +99,9 @@ GEM
     capybara-webkit (1.4.1)
       capybara (>= 2.3.0, < 2.5.0)
       json
-    chosen-rails (1.4.1)
+    chosen-rails (1.4.2)
       coffee-rails (>= 3.2)
-      compass-rails (>= 1.1.2)
+      compass-rails (>= 2.0.4)
       railties (>= 3.0)
       sass-rails (>= 3.2)
     chunky_png (1.3.4)
@@ -170,7 +170,7 @@ GEM
       thor (>= 0.14, < 2.0)
     jquery-ui-rails (5.0.5)
       railties (>= 3.2.16)
-    json (1.8.2)
+    json (1.8.3)
     kgio (2.9.3)
     launchy (2.4.3)
       addressable (~> 2.3)
@@ -253,7 +253,7 @@ GEM
     rdoc (4.2.0)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
-    rmagick (2.15.0)
+    rmagick (2.15.2)
     rspec-core (3.2.3)
       rspec-support (~> 3.2.0)
     rspec-expectations (3.2.1)
