@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/pasosdeJesus/sal7711_gen.git
-  revision: a68bea8c2c8032668c138008e1d948715e9487fb
+  revision: e32c98172bec9f308210229b2f57bb65a7364d08
   specs:
     sal7711_gen (1.0.a2)
       rails
@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: git://github.com/pasosdeJesus/sip.git
-  revision: 934cfcb2c9c2dfa966c845fc8abad9ca1c8cec44
+  revision: ad1e4696d624f008c19ecb55641470c10a2a3f8a
   specs:
     sip (2.0.a6)
       devise
@@ -262,7 +262,7 @@ GEM
     rspec-mocks (3.2.1)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.2.0)
-    rspec-rails (3.2.1)
+    rspec-rails (3.2.2)
       actionpack (>= 3.0, < 4.3)
       activesupport (>= 3.0, < 4.3)
       railties (>= 3.0, < 4.3)
