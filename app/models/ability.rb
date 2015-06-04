@@ -1,5 +1,5 @@
 # encoding: UTF-8
-class Ability  < Sip::Ability
+class Ability  < Sal7711Gen::Ability
 
 
     ROLADMIN      = 1
@@ -17,8 +17,7 @@ class Ability  < Sip::Ability
       ["", 0] #5
     ]
 
-    @@tablasbasicas = Sip::Ability::TABLAS_SIP + [
-      ['Sal7711Gen', 'categoriaprensa'],
+    @@tablasbasicas = @@tablasbasicas + [
       ['', 'organizacion']
     ]
    def self.tablasbasicas
@@ -30,13 +29,10 @@ class Ability  < Sip::Ability
    end 
 
 
-   # puts "OJO tablasbasicas" + Ability::tablasbasicas.to_s
 
-    @@basicas_seq_con_id = Sip::Ability::TABLAS_SIP_SEQID + [
-      ['Sal7711Gen', 'categoriaprensa'],
+    @@basicas_seq_con_id = @@basicas_seq_con_id + [
       ['', 'organizacion']
     ]
-     
     # Se definen habilidades con cancancan
     def initialize(usuario)
       # El primer argumento para can es la acción a la que se da permiso, 

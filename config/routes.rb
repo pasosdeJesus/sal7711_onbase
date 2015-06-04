@@ -13,11 +13,10 @@ Rails.application.routes.draw do
   end
   resources :usuarios, path_names: { new: 'nuevo', edit: 'edita' } 
 
-	get 'buscar/:id', to: 'buscar#mostraruno'
-	get 'buscar' => 'buscar#index'
-	get 'resultados' => 'buscar#resultados'
-  get 'mundep' => 'buscar#mundep'
-  get 'codigo' => 'admin/categoriaprensa#busca'
+#	get 'buscar/:id', to: 'buscar#mostraruno'
+#	get 'buscar' => 'buscar#index'
+# get 'mundep' => 'buscar#mundep'
+# get 'codigo' => 'admin/categoriaprensa#busca'
 
   resource "contacto", only: [:new, :create]
 

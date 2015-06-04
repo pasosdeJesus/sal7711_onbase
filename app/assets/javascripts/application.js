@@ -10,9 +10,7 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require sip/application
-//= require lazybox
-//= require chosen-jquery
+//= require sal7711_gen/application
 //= require_tree .
 
 
