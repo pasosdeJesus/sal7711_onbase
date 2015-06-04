@@ -118,6 +118,8 @@ module Sal7711Gen
       puts "OJO c=#{c}"
       cuentar = @client.execute(c)
       @numregistros = cuentar.first["cuenta"]
+      @coltexto = "itemname"
+      @colid = "itemnum"
       pag = 1
       if (params[:pag])
         pag = params[:pag].to_i
@@ -137,7 +139,7 @@ module Sal7711Gen
         #	FROM Results_CTE
         #WHERE RowNum >= #{paginador.offset}
         #AND RowNum < #{paginador.offset + paginador.per_page}"
-  
+ 
         c="SELECT itemnum, itemname #{f} 
           ORDER BY keyvaluedate DESC
           OFFSET #{paginador.offset} ROWS
@@ -167,11 +169,11 @@ module Sal7711Gen
     def mostraruno
       if (params[:id] && params[:id].to_i > 0)
         conecta
-        id = params[:id]
+        id = params[:id].to_i
         c="SELECT filepath, itemdata.itemname 
         FROM itemdata INNER JOIN itemdatapage 
           ON itemdata.itemnum=itemdatapage.itemnum 
-        WHERE itemdata.itemnum='#{id}'";
+        WHERE itemdata.itemnum='#{id.to_s}'";
         rutar = @client.execute(c)
         fila = rutar.first
         ruta = fila["filepath"].strip

@@ -12,8 +12,10 @@ gem "pg"
 # Formulario contacto
 gem 'mail_form'
 
-# Para crear CSS
+# Para generar CSS
 gem 'sass'
+gem "sass-rails"#, '~> 4.0.0.rc1'
+gem "compass-rails"
 
 # Cuadros de selección para búsquedas
 gem 'chosen-rails'
@@ -42,8 +44,6 @@ gem "prawn"
 # API JSON facil. Ver: https://github.com/rails/jbuilder
 gem "jbuilder"
 
-# SCSS para hojas de estilo
-gem "sass-rails"#, '~> 4.0.0.rc1'
 
 # Uglifier comprime recursos Javascript
 gem "uglifier", '>= 1.3.0'
