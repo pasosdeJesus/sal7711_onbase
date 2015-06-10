@@ -1,5 +1,6 @@
 #!/bin/sh
 # Inicia produccion
+
 if (test "${SECRET_KEY_BASE}" = "") then {
 	echo "Definir variable de ambiente SECRET_KEY_BASE"
 	exit 1;
@@ -45,6 +46,11 @@ if (test "${SAL7711_ONBASE_SERV}" = "") then {
 	exit 1;
 } fi;
 
+mp=`ulimit -p`
+if (test "$mp" -lt "512") then {
+	echo "Ejecute ulimit -p 512"
+	exit 1;
+} fi;
 sudo su ${USUARIO_AP} -c "cd /var/www/htdocs/sal7711_onbase; echo \"Iniciando unicorn...\"; SAL7711_ONBASE_SERV=${SAL7711_ONBASE_SERV} USUARIO_HBASE=${USUARIO_HBASE} CLAVE_HBASE=${CLAVE_HBASE} IP_HBASE=${IP_HBASE} DOMINIO=${DOMINIO} CARPETA='${CARPETA}' USUARIO_DOMINIO=${USUARIO_DOMINIO} CLAVE_DOMINIO=${CLAVE_DOMINIO} SECRET_KEY_BASE=${SECRET_KEY_BASE} bundle exec unicorn_rails -c ../sal7711_onbase/config/unicorn.conf.minimal.rb  -E production -D"
 #sudo su ${USUARIO_AP} -c "cd /var/www/htdocs/sal7711_onbase; rake assets:precompile; echo \"Iniciando unicorn...\"; SAL7711_ONBASE_SERV=${SAL7711_ONBASE_SERV} USUARIO_HBASE=${USUARIO_HBASE} CLAVE_HBASE=${CLAVE_HBASE} IP_HBASE=${IP_HBASE} DOMINIO=${DOMINIO} CARPETA='${CARPETA}' USUARIO_DOMINIO=${USUARIO_DOMINIO} CLAVE_DOMINIO=${CLAVE_DOMINIO} SECRET_KEY_BASE=${SECRET_KEY_BASE} bundle exec unicorn_rails -c ../sal7711_onbase/config/unicorn.conf.minimal.rb  -E production -D"
 

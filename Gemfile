@@ -6,6 +6,9 @@ source 'https://rubygems.org'
 gem "rails", '~> 4.2.0'
 gem "rails-i18n"
 
+# Color en terminal
+gem 'colorize'
+
 # Postgresql
 gem "pg"
 
@@ -121,7 +124,7 @@ group :development, :test do
   gem "launchy"
 
   # Depurar
-  gem 'byebug'
+  #gem 'byebug'
 
   # Consola irb en páginas con excepciones o usando <%= console %> en vistas
   gem 'web-console', '~> 2.0.0.beta4'
