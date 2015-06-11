@@ -98,8 +98,8 @@ gem "tzinfo-data"
 gem 'sip', github: 'pasosdeJesus/sip'
 #gem 'sip', path: '../sip'
 
-#gem 'sal7711_gen', github: 'pasosdeJesus/sal7711_gen'
-gem 'sal7711_gen', path: '../sal7711_gen'
+gem 'sal7711_gen', github: 'pasosdeJesus/sal7711_gen'
+#gem 'sal7711_gen', path: '../sal7711_gen'
 
 
 group :doc do
