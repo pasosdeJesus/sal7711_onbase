@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 
 
 # Rails (internacionalización)
-gem "rails", '~> 4.2.0'
+gem "rails", '~> 4.2.3.rc1'
 gem "rails-i18n"
 
 # Color en terminal
@@ -28,7 +28,7 @@ gem 'lazybox'
 
 # Tiny_TDS para MS-SQL usado por OnBase
 #gem "tiny_tds", '~> 0.6.3'
-gem 'tiny_tds', '0.6.3' #, path: '../tiny_tds', ver README.md
+gem 'tiny_tds', '0.6.3.rc1' #, path: '../tiny_tds', ver README.md
 
 # sambal para extraer archivos en directorio Windows usado por OnBase
 # gem "sambal"
