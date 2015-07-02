@@ -11,7 +11,7 @@ class RegistrationsController < Devise::RegistrationsController
       clean_up_passwords resource
       respond_with self.resource, location: '/'
     else
-      org = Organizacion.where(dominiocorreo: d).take
+      #org = Organizacion.where(dominiocorreo: d).take
       params[:usuario][:nusuario] = params[:usuario][:email].gsub(/[@.]/,"_")
       params[:usuario][:fechacreacion] = Date.today
       super
