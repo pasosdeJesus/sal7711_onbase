@@ -2,6 +2,21 @@
 require 'bcrypt'
 
 class UsuariosController < Sip::UsuariosController
+  def new
+    super
+    @miurl = crea_usuario_url 
+  end
+
+  def create
+    @usuario.confirmed_at = Date.today
+    super
+  end
+
+  def edit
+    super
+    @miurl = actualiza_usuario_url 
+  end
+
   # Lista blanca de paramétros
   def usuario_params
     params.require(:usuario).permit(

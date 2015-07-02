@@ -9,9 +9,12 @@ Rails.application.routes.draw do
           get 'usuarios/edit' => 'devise/registrations#edit', 
             :as => 'editar_registro_usuario'    
           put 'usuarios/:id' => 'devise/registrations#update', 
-            :as => 'registro_usuario'            
+            :as => 'registro_usuario'           
   end
   resources :usuarios, path_names: { new: 'nuevo', edit: 'edita' } 
+  post 'usuarios/crea' => 'usuarios#create', :as => 'crea_usuario'           
+  patch 'usuarios/:id/actualiza' => 'usuarios#update', :as => 'actualiza_usuario'           
+
 
 #	get 'buscar/:id', to: 'buscar#mostraruno'
 #	get 'buscar' => 'buscar#index'
