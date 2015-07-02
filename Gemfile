@@ -133,7 +133,6 @@ group :development, :test do
   gem 'pry-rescue'
   gem 'pry-stack_explorer'
 
-
 end
 
 # Los siguientes son para pruebas y no tiene generadores requeridos en desarrollo

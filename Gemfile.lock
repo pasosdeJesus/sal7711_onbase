@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/pasosdeJesus/sal7711_gen.git
-  revision: ef23f0a4c16d3bf390ecf72ea4d12109c983de81
+  revision: c30b8e16c34c9477569e253e359272e4d70d2ebd
   specs:
     sal7711_gen (1.0.a2)
       rails
@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: git://github.com/pasosdeJesus/sip.git
-  revision: 9c5bc81bc7569638ffd38b162de32e475cb81330
+  revision: 734295b22b25c8016318005c5cdd41e80dcccaa1
   specs:
     sip (2.0.a6)
       devise
@@ -87,7 +87,7 @@ GEM
       sass (>= 3.3.0)
     builder (3.2.2)
     camertron-eprun (1.1.0)
-    cancancan (1.11.0)
+    cancancan (1.12.0)
     capybara (2.4.4)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
@@ -153,7 +153,7 @@ GEM
     factory_girl_rails (4.5.0)
       factory_girl (~> 4.5.0)
       railties (>= 3.0.0)
-    ffi (1.9.8)
+    ffi (1.9.10)
     globalid (0.3.5)
       activesupport (>= 4.1.0)
     hike (1.2.3)
