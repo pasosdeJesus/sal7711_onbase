@@ -185,19 +185,21 @@ module Sal7711Gen
         fila = rutar.first
         ruta = fila["filepath"].strip
         titulo = fila["itemname"].strip
-        smbc = Sambal::Client.new(@@parsmb)
         rlocal = rutacache + "/" + File.basename(ruta.gsub("\\", "/"))
-        g = smbc.get(ruta, rlocal)
-        smbc.close
-        m = g.message.to_s.chomp
-        puts "m=#{m}"
-        is = m.index(" of size ")
-        if (is <= 0)
-          return
+        if (!File.exists? rlocal)
+          smbc = Sambal::Client.new(@@parsmb)
+          g = smbc.get(ruta, rlocal)
+          smbc.close
+          m = g.message.to_s.chomp
+          puts "m=#{m}"
+          is = m.index(" of size ")
+          if (is <= 0)
+            return
+          end
+          fs = m.index(" as #{rlocal}")
+          s=m[is+9..fs].to_i
+          puts "s=#{s}"
         end
-        fs = m.index(" as #{rlocal}")
-        s=m[is+9..fs].to_i
-        puts "s=#{s}"
         return [titulo, rlocal]
     end
 
