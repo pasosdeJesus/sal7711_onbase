@@ -30,7 +30,7 @@ module Sal7711Gen
     def conecta
       if !@client || @client.dead? || !@client.active?
         @client = TinyTds::Client.new(@@hbase)
-        r = @client.execute("USE OnBase").do;
+        @client.execute("USE OnBase").do;
       end
       if @client.dead?
         puts "dead"
@@ -69,10 +69,10 @@ module Sal7711Gen
         pmd = params[:mundep].split(" / ")
         
         if pmd.length == 1 # solo departamento
-          w += cruza_tabla_consulta(108, pmd[0])
+          w += cruza_tabla_consulta(108, pmd[0].slice(0,45))
         else # departamento y municipio
-          w += cruza_tabla_consulta(108, pmd[1])
-          w += cruza_tabla_consulta(110, pmd[0])
+          w += cruza_tabla_consulta(108, pmd[1].slice(0, 45))
+          w += cruza_tabla_consulta(110, pmd[0].slice(0, 45))
         end
       end
   
@@ -82,40 +82,49 @@ module Sal7711Gen
       if(params[:pagina] && params[:pagina] != '')
         w += cruza_tabla_consulta(104, params[:pagina])
       end
-      if (w == '' && (!params[:categoria_id] || params[:categoria_id] == ''))
+      if (w == '' && (!params[:categoria] || params[:categoria] == ''))
         w = " AND 1=2"
       end
-  
-      if(params[:categoria_id] && params[:categoria_id] != '')
-        cat = Sal7711Gen::Categoriaprensa.find(params[:categoria_id]);
-        if cat.supracategoria
-          op = ' LIKE ';
-          cod = "#{cat.codigo}%"
-        else
-          op = ' = ';
-          cod = cat.codigo.to_s
+      if(params[:categoria] && params[:categoria] != '')
+        ccat = params[:categoria].upcase.split(' ')[0]
+        if ccat.ends_with? "*"
+          op = ' LIKE '
+          cod = "#{ccat.split('*')[0]}%"
+        else 
+          cat = Sal7711Gen::Categoriaprensa.where('codigo=?', ccat).take;
+          if cat && cat.supracategoria
+            op = ' LIKE '
+            cod = "#{cat.codigo}%"
+          elsif cat
+            op = ' = '
+            cod = cat.codigo.to_s
+          else
+            op = ' = '
+            cod = 'loco' 
+          end
         end
         tablaspre = @tablas
         w1 = w + cruza_tabla_consulta(112, cod, op)
-        f = "FROM (SELECT itemdata.*, keyitem103.keyvaluedate FROM #{@tablas.join(", ")} " +
+        f = "FROM (SELECT itemdata.*, keyitem103.keyvaluedate, 1 as prio FROM #{@tablas.join(", ")} " +
           "WHERE keyitem103.itemnum=itemdata.itemnum #{w1}"
         @tablas = tablaspre
         w2 = w + cruza_tabla_consulta(113, cod, op)
-        f += " UNION SELECT itemdata.*, keyitem103.keyvaluedate FROM #{@tablas.join(", ")} " +
+        f += " UNION SELECT itemdata.*, keyitem103.keyvaluedate, 2 as prio FROM #{@tablas.join(", ")} " +
           "WHERE keyitem103.itemnum=itemdata.itemnum #{w2}"
         @tablas = tablaspre
         w3 = w + cruza_tabla_consulta(114, cod, op)
-        f += " UNION SELECT itemdata.*, keyitem103.keyvaluedate FROM #{@tablas.join(", ")} " +
+        f += " UNION SELECT itemdata.*, keyitem103.keyvaluedate, 3 as prio FROM #{@tablas.join(", ")} " +
           "WHERE keyitem103.itemnum=itemdata.itemnum #{w3}"
         f += ") AS sub"
       else
         f = "FROM (SELECT itemdata.itemnum AS itemnum, itemdata.itemname AS itemname," +
-          "keyitem103.keyvaluedate AS keyvaluedate FROM #{@tablas.join(", ")} " +
+          "keyitem103.keyvaluedate AS keyvaluedate, 1 as prio FROM #{@tablas.join(", ")} " +
           "WHERE keyitem103.itemnum=itemdata.itemnum #{w}) AS sub"
       end
   
       c = "SELECT count(*) AS cuenta #{f}"
       puts "OJO c=#{c}"
+      #byebug
       cuentar = @client.execute(c)
       @numregistros = cuentar.first["cuenta"]
       @coltexto = "itemname"
@@ -141,7 +150,7 @@ module Sal7711Gen
         #AND RowNum < #{paginador.offset + paginador.per_page}"
  
         c="SELECT itemnum, itemname #{f} 
-          ORDER BY keyvaluedate DESC
+          ORDER BY prio, keyvaluedate 
           OFFSET #{paginador.offset} ROWS
         FETCH NEXT #{paginador.per_page} ROWS ONLY"
         puts "OJO q=#{c}"
@@ -165,11 +174,9 @@ module Sal7711Gen
         end
       end
     end
-  
-    def mostraruno
-      if (params[:id] && params[:id].to_i > 0)
+ 
+    def descarga(id, rutacache)
         conecta
-        id = params[:id].to_i
         c="SELECT filepath, itemdata.itemname 
         FROM itemdata INNER JOIN itemdatapage 
           ON itemdata.itemnum=itemdatapage.itemnum 
@@ -177,14 +184,9 @@ module Sal7711Gen
         rutar = @client.execute(c)
         fila = rutar.first
         ruta = fila["filepath"].strip
-        @titulo = titulo = fila["itemname"].strip
+        titulo = fila["itemname"].strip
         smbc = Sambal::Client.new(@@parsmb)
-        dirl = Rails.root.join('public').to_s
-        FileUtils.mkdir_p(dirl + "/assets/images/cache-articulos/")
-        @rutadescarga = "/assets/images/cache-articulos/" + 
-          File.basename(ruta.gsub("\\", "/"))
-        rlocal = dirl + image_path(@rutadescarga)
-        puts "OJO rlocal=#{rlocal}"
+        rlocal = rutacache + "/" + File.basename(ruta.gsub("\\", "/"))
         g = smbc.get(ruta, rlocal)
         smbc.close
         m = g.message.to_s.chomp
@@ -193,34 +195,10 @@ module Sal7711Gen
         if (is <= 0)
           return
         end
-        fs = m.index(" as #{dirl}")
+        fs = m.index(" as #{rlocal}")
         s=m[is+9..fs].to_i
-        arr = []
-        #byebug
-        system("convert #{rlocal} #{rlocal}.jpg")
-        if !File.exists?("#{rlocal}.jpg")
-          return
-        end
-        # Genera PDF
-        Prawn::Document.generate("#{rlocal}.pdf") do
-          w = 550
-          h = 700
-          text titulo
-          bounding_box([0, cursor], :width => w, :height => h) do
-            image "#{rlocal}.jpg", :fit => [w, h]
-            stroke_bounds
-          end
-        end
-  
-        #img = Magick::Image.read(rlocal).first
-        #img.write ""
-        # Image.read falla para algunas imagenes con  Null count for "Tag 34026" (type 1, writecount │-3, passcount 1). `_TIFFVSetField' @ error/tiff.c/TIFFErrors/508):
-        respond_to do |format|
-          format.html { head :no_content }
-          format.json { head :no_content }
-          format.js   { render action: :mostraruno }
-        end
-      end
+        puts "s=#{s}"
+        return [titulo, rlocal]
     end
 
   end
