@@ -6,16 +6,23 @@ if (test "$?" = "0") then {
 	echo "Gemfile incluye un sip cableado al sistema de archivos"
 	exit 1;
 } fi;
+grep "^ *gem *.sal7711_gen.*, *path:" Gemfile > /dev/null 2> /dev/null
+if (test "$?" = "0") then {
+	echo "Gemfile incluye un sal7711_gen cableado al sistema de archivos"
+	exit 1;
+} fi;
+
+
 grep "^ *gem *.debugger*" Gemfile > /dev/null 2> /dev/null
 if (test "$?" = "0") then {
 	echo "Gemfile incluye debugger que heroku no quiere"
 	exit 1;
 } fi;
-#grep "^ *gem *.byebug*" Gemfile > /dev/null 2> /dev/null
-#if (test "$?" = "0") then {
-#	echo "Gemfile incluye byebug que rbx de travis-ci no quiere"
-#	exit 1;
-#} fi;
+grep "^ *gem *.byebug*" Gemfile > /dev/null 2> /dev/null
+if (test "$?" = "0") then {
+	echo "Gemfile incluye byebug que rbx de travis-ci no quiere"
+	exit 1;
+} fi;
 
 if (test "$P" = "1") then {
 	grep "([0-9]" Gemfile.lock  | sed -e "s/^ */sudo NOKOGIRI_USE_SYSTEM_LIBRARIES=1 MAKE=gmake make=gmake QMAKE=qmake4 gem install /g;s/(\([0-9.a-z]*\))/ -v \1/g" > /tmp/gctmp.sh;
