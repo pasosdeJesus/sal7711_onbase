@@ -208,7 +208,18 @@ CREATE TABLE sal7711_gen_articulo (
     fecha date NOT NULL,
     pagina character varying(20) NOT NULL,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    anexo_id integer NOT NULL
+);
+
+
+--
+-- Name: sal7711_gen_articulo_categoriaprensa; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE sal7711_gen_articulo_categoriaprensa (
+    articulo_id integer NOT NULL,
+    categoriaprensa_id integer NOT NULL
 );
 
 
@@ -229,6 +240,39 @@ CREATE SEQUENCE sal7711_gen_articulo_id_seq
 --
 
 ALTER SEQUENCE sal7711_gen_articulo_id_seq OWNED BY sal7711_gen_articulo.id;
+
+
+--
+-- Name: sal7711_gen_bitacora; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE sal7711_gen_bitacora (
+    id integer NOT NULL,
+    fecha timestamp without time zone,
+    ip character varying(100),
+    usuario_id integer,
+    operacion character varying(50),
+    detalle character varying(5000)
+);
+
+
+--
+-- Name: sal7711_gen_bitacora_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE sal7711_gen_bitacora_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: sal7711_gen_bitacora_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE sal7711_gen_bitacora_id_seq OWNED BY sal7711_gen_bitacora.id;
 
 
 --
@@ -294,7 +338,6 @@ CREATE SEQUENCE sip_anexo_id_seq
 
 CREATE TABLE sip_anexo (
     id integer DEFAULT nextval('sip_anexo_id_seq'::regclass) NOT NULL,
-    fecha date NOT NULL,
     descripcion character varying(1500) NOT NULL,
     archivo character varying(255),
     created_at timestamp without time zone,
@@ -913,6 +956,13 @@ ALTER TABLE ONLY sal7711_gen_articulo ALTER COLUMN id SET DEFAULT nextval('sal77
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY sal7711_gen_bitacora ALTER COLUMN id SET DEFAULT nextval('sal7711_gen_bitacora_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY sal7711_gen_categoriaprensa ALTER COLUMN id SET DEFAULT nextval('sal7711_gen_categoriaprensa_id_seq'::regclass);
 
 
@@ -984,6 +1034,14 @@ ALTER TABLE ONLY sip_persona_trelacion
 
 ALTER TABLE ONLY sal7711_gen_articulo
     ADD CONSTRAINT sal7711_gen_articulo_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: sal7711_gen_bitacora_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY sal7711_gen_bitacora
+    ADD CONSTRAINT sal7711_gen_bitacora_pkey PRIMARY KEY (id);
 
 
 --
@@ -1223,11 +1281,27 @@ ALTER TABLE ONLY sip_departamento
 
 
 --
+-- Name: fk_rails_52d9d2f700; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sal7711_gen_bitacora
+    ADD CONSTRAINT fk_rails_52d9d2f700 FOREIGN KEY (usuario_id) REFERENCES usuario(id);
+
+
+--
 -- Name: fk_rails_65eae7449f; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY sal7711_gen_articulo
     ADD CONSTRAINT fk_rails_65eae7449f FOREIGN KEY (departamento_id) REFERENCES sip_departamento(id);
+
+
+--
+-- Name: fk_rails_7d1213c35b; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sal7711_gen_articulo_categoriaprensa
+    ADD CONSTRAINT fk_rails_7d1213c35b FOREIGN KEY (articulo_id) REFERENCES sal7711_gen_articulo(id);
 
 
 --
@@ -1239,11 +1313,27 @@ ALTER TABLE ONLY sal7711_gen_articulo
 
 
 --
+-- Name: fk_rails_bdb4c828f9; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sal7711_gen_articulo
+    ADD CONSTRAINT fk_rails_bdb4c828f9 FOREIGN KEY (anexo_id) REFERENCES sip_anexo(id);
+
+
+--
 -- Name: fk_rails_d3b628101f; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY sal7711_gen_articulo
     ADD CONSTRAINT fk_rails_d3b628101f FOREIGN KEY (fuenteprensa_id) REFERENCES sip_fuenteprensa(id);
+
+
+--
+-- Name: fk_rails_fcf649bab3; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sal7711_gen_articulo_categoriaprensa
+    ADD CONSTRAINT fk_rails_fcf649bab3 FOREIGN KEY (categoriaprensa_id) REFERENCES sal7711_gen_categoriaprensa(id);
 
 
 --
@@ -1388,6 +1478,8 @@ INSERT INTO schema_migrations (version) VALUES ('20150413160157');
 
 INSERT INTO schema_migrations (version) VALUES ('20150413160158');
 
+INSERT INTO schema_migrations (version) VALUES ('20150413160159');
+
 INSERT INTO schema_migrations (version) VALUES ('20150416074423');
 
 INSERT INTO schema_migrations (version) VALUES ('20150503110048');
@@ -1411,4 +1503,12 @@ INSERT INTO schema_migrations (version) VALUES ('20150528100944');
 INSERT INTO schema_migrations (version) VALUES ('20150529085519');
 
 INSERT INTO schema_migrations (version) VALUES ('20150603181900');
+
+INSERT INTO schema_migrations (version) VALUES ('20150604101858');
+
+INSERT INTO schema_migrations (version) VALUES ('20150604102321');
+
+INSERT INTO schema_migrations (version) VALUES ('20150604155923');
+
+INSERT INTO schema_migrations (version) VALUES ('20150702224217');
 

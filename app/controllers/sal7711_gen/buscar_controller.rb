@@ -76,7 +76,8 @@ module Sal7711Gen
         end
       end
   
-      if(params[:fuente] && params[:fuente][:nombre] != '')
+      if(params[:fuente] && params[:fuente][:nombre] &&
+         params[:fuente][:nombre] != '')
         w += cruza_tabla_consulta(101, params[:fuente][:nombre])
       end
       if(params[:pagina] && params[:pagina] != '')

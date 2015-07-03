@@ -28,11 +28,12 @@ gem 'lazybox'
 
 # Tiny_TDS para MS-SQL usado por OnBase
 #gem "tiny_tds", '~> 0.6.3'
-gem 'tiny_tds', '0.6.3.rc1' #, path: '../tiny_tds', ver README.md
+gem 'tiny_tds', '~> 0.6.3.rc1' #, path: '../tiny_tds', ver README.md
 
 # sambal para extraer archivos en directorio Windows usado por OnBase
 # gem "sambal"
-gem "sambal", github: "vtamara/sambal"
+gem "sambal"
+#gem "sambal", github: "vtamara/sambal"
 #gem 'sambal', path: '../sambal'
 
 # Para convertir de tiff a jpg
@@ -73,7 +74,7 @@ gem "bootstrap-sass"
 gem "simple_form"
 
 # Formularios anidados (algunos con ajax)
-gem "cocoon", github: "vtamara/cocoon"
+#gem "cocoon", github: "vtamara/cocoon"
 
 # Autenticación y roles
 gem "devise"
