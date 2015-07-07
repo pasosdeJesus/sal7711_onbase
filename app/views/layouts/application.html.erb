@@ -1,5 +1,5 @@
-<% content_for :title do %>
-    <%= Sip.titulo %>
+<% content_for :titulo do %>
+  Archivo digital de Prensa
 <% end %>
 
 <% content_for :menu do %>
@@ -15,10 +15,8 @@
         <%= menu_item "Clave", sip.editar_registro_usuario_path %>
         <% if current_usuario.rol == Ability::ROLADMIN %>
           <%= menu_item "Usuarios", sip.usuarios_path %>
-        <% end %>
-        <% if current_usuario.rol == Ability::ROLADMIN %>
           <%= menu_item "Tablas Básicas", sip.tablasbasicas_path %>
-          <!-- %= #menu_item "Casos", admin_casos_path % -->
+          <%= menu_item "Consultas por usuario", "/bitacoraadmin" %>
         <% end %>
       <% end %>
       <%= menu_item "Salir #{current_usuario.nusuario}", sip.sign_out_path %>
@@ -29,10 +27,16 @@
   <% end %>
 <% end %>
 
-<% content_for :footer do %>
-  <p><span class='derechos'>Dominio Público de acuerdo a Legislación Colombiana<br/>
-		Personalización de Sal7711 para el <a href="http://www.cinep.org.co">CINEP</a> desarrollada por <a href="http://www.pasosdeJesus.org" target="_blank">Pasos de Jesús</a>. 2015. 
-  </span></p>
+<% content_for :piedepagina do %>
+  <div class="pie">
+    <p style="font-size: 16pt"><a href="http://www.cinep.org.co">cinep.org.co</a></p>
+    <p> Contenidos con derechos reservados. Pueden ser utilizado total o 
+    parcialmente, siempre y cuando se cite como fuente al CINEP/Programa 
+    por la Paz.</p>
+  <p>Teléfono: (57)(1) 245.6181  /  Fax: (57)(1) 287.9089  /  Email: cinep@cinep.org.co  /  Dirección: Cra 5 No. 33B- 02 Bogotá, Colombia.</p>
+  <p>Sistema de información desarrollado por <a href="http://www.pasosdeJesus.org">Pasos de Jesús</a></p>
+</div>
+  </div>
 <% end %>
 
 <%= render template: "layouts/sal7711_gen/application" %>
