@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :usuarios, path_names: { new: 'nuevo', edit: 'edita' } 
   post 'usuarios/crea' => 'usuarios#create', :as => 'crea_usuario'           
   patch 'usuarios/:id/actualiza' => 'usuarios#update', :as => 'actualiza_usuario'           
+  get 'bitacoraadmin' => 'sal7711_gen/bitacora#admin', as: 'bitacora_admin'
 
 
 #	get 'buscar/:id', to: 'buscar#mostraruno'

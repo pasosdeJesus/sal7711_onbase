@@ -6,7 +6,7 @@ es:
       "organizacion":
         autoregistro: Registro automático 
         dominiocorreo: Dominio del correo electrónico para registro automático
-        pexcluyecorreo: Patro de correo por excluir de registro automático
+        pexcluyecorreo: Patrón de correo por excluir de registro automático
   devise:
     registrations:
        usuario:
