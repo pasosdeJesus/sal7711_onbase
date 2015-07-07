@@ -59,15 +59,58 @@ class Ability  < Sal7711Gen::Ability
       can :nuevo, Sip::Ubicacion
       #can :nuevo, Sip::Victima
       if usuario && usuario.rol then
+        diasv = usuario.diasvigencia
+        fechar = usuario.fecharenovacion
+        pdom = usuario.email.split("@")
+        if pdom.count == 2 
+          dom = pdom[1]
+          org = ::Organizacion.where(dominiocorreo: dom).take
+          if org # plan corporativo correo
+            diasv = org.diasvigencia
+            fechar = org.fecharenovacion
+          end
+        end
         can :read, Sal7711Gen::Categoriaprensa
         case usuario.rol 
-        when Ability::ROLINV
+        when Ability::ROLINV, Ability::ROLINVANON
+          if !diasv  || !fechar
+            raise CanCan::AccessDenied.new(
+              "Usuario sin fecha de renovación o tiempo de vigencia", 
+              :read, Sip::Ubicacion)
+            return
+          end
+          fechaf = fechar + diasv
+          hoy = Date.today
+          if hoy < fechar || hoy > fechaf
+            raise CanCan::AccessDenied.new(
+              "Sin vigencia", 
+              :read, Sip::Ubicacion)
+          end
           can :read, Sip::Ubicacion
           can :new, Sip::Ubicacion
           can [:update, :create, :destroy], Sip::Ubicacion
           #can :read, Sip::Actividad
           #can :new, Sip::Actividad
           #can [:update, :create, :destroy], Sip::Actividad
+        when Ability::ROLADMINORG
+          if !diasv  || !fechar
+            raise CanCan::AccessDenied.new(
+              "Usuario sin fecha de renovación o tiempo de vigencia", 
+              :read, Sip::Ubicacion)
+            return
+          end
+          fechaf = fechar + diasv
+          hoy = Date.today
+          if hoy < fechar || hoy > fechaf
+            raise CanCan::AccessDenied.new(
+              "Sin vigencia", 
+              :read, Sip::Ubicacion)
+          end
+          can :read, Sip::Ubicacion
+          can :new, Sip::Ubicacion
+          can [:update, :create, :destroy], Sip::Ubicacion
+        when Ability::ROLINDEXADOR
+          can :manage, Sip::Ubicacion
         when Ability::ROLADMIN
           can :manage, Sip::Ubicacion
           #can :manage, Sip::Actividad
