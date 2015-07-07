@@ -23,11 +23,15 @@ class UsuariosController < Sip::UsuariosController
       :id, :nusuario, :password, 
       :nombre, :descripcion, :oficina_id,
       :rol, :idioma, :email, :encrypted_password, 
+      :fecharenovacion, :diasvigencia,
       :fechacreacion, :fechadeshabilitacion, :reset_password_token, 
       :reset_password_sent_at, :remember_created_at, :sign_in_count, 
       :current_sign_in_at, :last_sign_in_at, :current_sign_in_ip, 
       :failed_attempts, :unlock_token, :locked_at,
-      :last_sign_in_ip, :etiqueta_ids => []
+      :last_sign_in_ip, 
+      :confirmation_token, :confirmed_at, 
+      :confirmation_sent_at, :uncofirmed_email,
+      :etiqueta_ids => []
     )
   end
 end

@@ -173,7 +173,9 @@ CREATE TABLE organizacion (
     updated_at timestamp without time zone,
     autoregistro boolean DEFAULT false,
     dominiocorreo character varying(500),
-    pexcluyecorreo character varying(500)
+    pexcluyecorreo character varying(500),
+    diasvigencia integer,
+    fecharenovacion date
 );
 
 
@@ -933,6 +935,8 @@ CREATE TABLE usuario (
     confirmed_at timestamp without time zone,
     confirmation_sent_at timestamp without time zone,
     unconfirmed_email character varying,
+    diasvigencia integer,
+    fecharenovacion date,
     CONSTRAINT usuario_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion))),
     CONSTRAINT usuario_rol_check CHECK (((rol >= 1) AND (rol <= 6)))
 );
@@ -1511,4 +1515,6 @@ INSERT INTO schema_migrations (version) VALUES ('20150604102321');
 INSERT INTO schema_migrations (version) VALUES ('20150604155923');
 
 INSERT INTO schema_migrations (version) VALUES ('20150702224217');
+
+INSERT INTO schema_migrations (version) VALUES ('20150707132824');
 
