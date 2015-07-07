@@ -1,6 +1,14 @@
 GIT
+  remote: git://github.com/pasosdeJesus/sal7711_gen.git
+  revision: c284af137c4c5a0efa36064b3339f888bc385eb0
+  specs:
+    sal7711_gen (1.0.a2)
+      rails
+      sip
+
+GIT
   remote: git://github.com/pasosdeJesus/sip.git
-  revision: 734246048e2634d1ac5f037443b92b43c5e3ad3a
+  revision: 2dbb6c4c604a7b1cf2f5f27ca5ab6a514475edc8
   specs:
     sip (2.0.a6)
       devise
@@ -13,13 +21,6 @@ GIT
   specs:
     jquery-ui-bootstrap-rails (0.1.1)
       rails
-
-PATH
-  remote: ../sal7711_gen
-  specs:
-    sal7711_gen (1.0.a2)
-      rails
-      sip
 
 GEM
   remote: https://rubygems.org/
@@ -73,8 +74,6 @@ GEM
       autoprefixer-rails (>= 5.0.0.1)
       sass (>= 3.3.0)
     builder (3.2.2)
-    byebug (5.0.0)
-      columnize (= 0.9.0)
     camertron-eprun (1.1.0)
     cancancan (1.12.0)
     capybara (2.4.4)
@@ -108,7 +107,6 @@ GEM
       execjs
     coffee-script-source (1.9.1.1)
     colorize (0.7.7)
-    columnize (0.9.0)
     compass (1.0.3)
       chunky_png (~> 1.2)
       compass-core (~> 1.0.2)
@@ -149,7 +147,7 @@ GEM
     hike (1.2.3)
     i18n (0.7.0)
     interception (0.5)
-    jbuilder (2.3.0)
+    jbuilder (2.3.1)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
     jquery-rails (4.0.4)
@@ -175,7 +173,7 @@ GEM
     mimemagic (0.3.0)
     mini_portile (0.6.2)
     minitest (5.7.0)
-    multi_json (1.11.1)
+    multi_json (1.11.2)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
     orm_adapter (0.5.0)
@@ -339,7 +337,6 @@ DEPENDENCIES
   bcrypt
   bootstrap-datepicker-rails
   bootstrap-sass
-  byebug
   cancancan
   capybara
   capybara-webkit (= 1.4.1)

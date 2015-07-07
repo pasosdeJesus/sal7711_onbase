@@ -13,6 +13,8 @@ FactoryGirl.define do
     fechacreacion "2014-08-05"
     fechadeshabilitacion nil
     confirmed_at '2015-05-07'
+    fecharenovacion "2015-03-27"
+    diasvigencia "1000000"
   end
 end
 
