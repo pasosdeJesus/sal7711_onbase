@@ -4,5 +4,6 @@ class Organizacion < ActiveRecord::Base
 
   validates :nombre, presence: true, allow_blank: false
   validates :diasvigencia, presence: true, allow_blank: false
+  validates :fecharenovacion, presence: true, allow_blank: false
   validates :fechacreacion, presence: true, allow_blank: false
 end
