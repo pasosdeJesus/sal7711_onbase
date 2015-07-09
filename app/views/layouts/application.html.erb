@@ -1,5 +1,5 @@
 <% content_for :titulo do %>
-  Archivo digital de Prensa
+  Archivo Digital de Prensa
 <% end %>
 
 <% content_for :menu do %>
@@ -22,7 +22,6 @@
       <%= menu_item "Salir #{current_usuario.nusuario}", sip.sign_out_path %>
     <% else %>
       <%= menu_item "Inscribirse", "/usuarios/sign_up" %>
-      <%= menu_item "Iniciar Sesión", sip.new_usuario_session_path %> 
     <% end %>
   <% end %>
 <% end %>

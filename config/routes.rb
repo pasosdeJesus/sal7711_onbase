@@ -2,6 +2,7 @@
 Rails.application.routes.draw do
   devise_scope :usuario do
     get 'sign_out' => 'devise/sessions#destroy'
+    root 'devise/sessions#new'
   end
 #  devise_for :usuarios, :skip => [:registrations], module: :devise
   devise_for :usuarios, module: :devise, controllers: { registrations: "registrations" }
@@ -24,7 +25,6 @@ Rails.application.routes.draw do
 
   resource "contacto", only: [:new, :create]
 
-  root 'sip/hogar#index'
   mount Sal7711Gen::Engine => "/", as: 'sal7711_gen'
   mount Sip::Engine => "/", as: 'sip'
 

@@ -41,7 +41,7 @@ if (test "$?" != "0") then {
 	exit 1;
 } fi;
 
-rspec
+foreman run rspec
 if (test "$?" != "0") then {
 	echo "No pasaron pruebas";
 	exit 1;
