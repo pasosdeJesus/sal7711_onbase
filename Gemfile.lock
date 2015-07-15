@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/pasosdeJesus/sal7711_gen.git
-  revision: a5cdb035f0e6eea10024ea73ff311f562592a734
+  revision: def2254903523d56b6ad5b20a72a435e30d297ef
   specs:
     sal7711_gen (1.0.a2)
       rails
@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: git://github.com/pasosdeJesus/sip.git
-  revision: b17380faeefb322e928bf15deb0f7ce37ca7ac11
+  revision: dd219944c0350d65cb561955eeb9934531c3eb81
   specs:
     sip (2.0.a6)
       devise
@@ -61,7 +61,7 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     addressable (2.3.8)
-    arel (6.0.0)
+    arel (6.0.2)
     autoprefixer-rails (5.2.1)
       execjs
       json
@@ -262,7 +262,7 @@ GEM
       rspec-support (~> 3.3.0)
     rspec-support (3.3.0)
     sambal (0.1.5)
-    sass (3.4.15)
+    sass (3.4.16)
     sass-rails (5.0.1)
       railties (>= 4.0.0, < 5.0)
       sass (~> 3.1)

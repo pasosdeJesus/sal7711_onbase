@@ -16,7 +16,8 @@
         <% if current_usuario.rol == Ability::ROLADMIN %>
           <%= menu_item "Usuarios", sip.usuarios_path %>
           <%= menu_item "Tablas Básicas", sip.tablasbasicas_path %>
-          <%= menu_item "Consultas por usuario", "/bitacoraadmin" %>
+          <%= menu_item "Consultas por usuario", "/bitacora/admin" %>
+          <%= menu_item "Consultas en tiempo", "/bitacora/tiempo" %>
         <% end %>
       <% end %>
       <%= menu_item "Salir #{current_usuario.nusuario}", sip.sign_out_path %>
@@ -28,7 +29,6 @@
 
 <% content_for :piedepagina do %>
   <div class="pie">
-    <p style="font-size: 16pt"><a href="http://www.cinep.org.co">cinep.org.co</a></p>
     <p> Contenidos con derechos reservados. Pueden ser utilizado total o 
     parcialmente, siempre y cuando se cite como fuente al CINEP/Programa 
     por la Paz.</p>
