@@ -50,9 +50,40 @@ module Sal7711Gen
           AND keyxitem#{numi}.keywordnum=keytable#{numi}.keywordnum
       AND keytable#{numi}.keyvaluechar #{op} '#{valore}'"
     end
-  
+ 
+    def verifica_departamentos
+      ds = Sip::Departamento.all.where(id_pais: 170)
+      ds.each do |d|
+        puts d.nombre
+        c="SELECT COUNT(*) AS cuenta FROM keytable108 WHERE keyvaluechar='#{d.nombre}';"
+        cuentar = @client.execute(c)
+        @numregistros = cuentar.first["cuenta"]
+        if @numregistros != 1
+          puts "OJO #{d.nombre} aparece #{@numregistros} veces"
+        end
+      end
+    end 
+
+    def verifica_municipios
+      dm = Sip::Municipio.joins(:departamento).where(
+        "sip_departamento.id_pais='170'")
+      puts "MUNICIPIOS CON PROBLEMAS:"
+      puts "*************************"
+      dm.each do |m|
+        c="SELECT COUNT(*) AS cuenta FROM keytable110 WHERE keyvaluechar='#{m.nombre}';"
+        cuentar = @client.execute(c)
+        @numregistros = cuentar.first["cuenta"]
+        if @numregistros == 0
+          puts "#{m.nombre}"
+        end
+      end
+      puts "*************************"
+    end 
+
     def prepara_pagina
       conecta
+      #verifica_departamentos
+      #verifica_municipios
       @tablas = ["keyitem103", "itemdata"]
       w = ""
       if (params[:fechaini] && params[:fechaini] != '')
