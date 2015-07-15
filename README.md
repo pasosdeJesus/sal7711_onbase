@@ -1,6 +1,5 @@
 # Sal7711
-[![Estado Construcción](https://api.travis-ci.org/pasosdeJesus/sal7711.svg?branch=master)](https://travis-ci.org/pasosdeJesus/sal7711) [![Clima del Código](https://codeclimate.com/github/pasosdeJesus/sal7711/badges/gpa.svg)](https://codeclimate.com/github/pasosdeJesus/sal7711) [![Cobertura de Pruebas](https://codeclimate.com/github/pasosdeJesus/sal7711/badges/coverage.svg)](https://codeclimate.com/github/pasosdeJesus/sal7711) [![security](https://hakiri.io/github/pasosdeJesus/sal7711/master.svg)](https://hakiri.io/github/pasosdeJesus/sal7711/master) [![Dependencias](https://gemnasium.com/pasosdeJesus/sal7711.svg)](https://gemnasium.com/pasosdeJesus/sal7711) 
-
+[![Clima del Código](https://codeclimate.com/github/pasosdeJesus/sal7711_onbase/badges/gpa.svg)](https://codeclimate.com/github/pasosdeJesus/sal7711_onbase) [![security](https://hakiri.io/github/pasosdeJesus/sal7711_onbase/master.svg)](https://hakiri.io/github/pasosdeJesus/sal7711_onbase/master) [![Dependencias](https://gemnasium.com/pasosdeJesus/sal7711_onbase.svg)](https://gemnasium.com/pasosdeJesus/sal7711_onbase) 
 
 Archivo de Prensa
 
@@ -10,15 +9,13 @@ Archivo de Prensa
 * PostgreSQL >= 9.4 con extensión unaccent disponible
 * Recomendado sobre adJ 5.6 (que incluye todos los componentes mencionados).  
   Las siguientes instrucciones suponen que opera en este ambiente.
-* freetds, instale en adJ con sudo pkg_add freetds
-* tiny_tds 0.6.3pre --disponible en repositorio master de tiny_tds en el 
-  momento de este escrito
-
 
 Puede consultar como instalar estos componentes en: http://dhobsd.pasosdejesus.org/index.php?id=Ruby+on+Rails+en+OpenBSD
 
 Se requiere además freetds:
+```
 sudo pkg_add freetds
+```
 
 Y la gema tiny_tds en su versión 0.6.3, en el momento de este escrito esa
 versión no ha sido publicada, pero la rama master de sus fuentes en github
@@ -26,7 +23,6 @@ sirven (las versiones 0.6.2 y anteriores presentan problemas para conexiones
 como las que se hacen).
 
 Se deben clonar el repositorio, generar la gema e instalarla.
-
 
 
 ### Arquitectura
