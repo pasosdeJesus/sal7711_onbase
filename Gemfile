@@ -37,7 +37,7 @@ gem "sambal"
 #gem 'sambal', path: '../sambal'
 
 # Para convertir de tiff a jpg
-gem "rmagick"
+#gem "rmagick"
 
 # Para generar PDF
 gem "prawn"

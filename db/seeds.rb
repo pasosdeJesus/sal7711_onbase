@@ -1,21 +1,15 @@
 # encoding: UTF-8
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
 
+conexion = ActiveRecord::Base.connection();
 
-connection = ActiveRecord::Base.connection();
+# De motores y finalmente de este
+motor = ['sip', 'sal7711_gen', nil]
+motor.each do |m|
+    Sip::carga_semillas_sql(conexion, m, :cambios)
+    Sip::carga_semillas_sql(conexion, m, :datos)
+end
 
-connection.execute(IO.read(Gem.loaded_specs['sip'].full_gem_path +
-                           "/db/datos-basicas.sql"));
-connection.execute(IO.read("db/datos-basicas.sql"));
-
-
-connection.execute("INSERT INTO usuario 
+conexion.execute("INSERT INTO usuario 
 	(nusuario, email, encrypted_password, password, 
   fechacreacion, created_at, updated_at, rol, confirmed_at) 
 	VALUES ('sal7711', 'sal7711', 
