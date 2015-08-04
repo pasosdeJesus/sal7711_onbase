@@ -116,6 +116,10 @@ footer a:vlink {
 	color: #a0d6ef;
 }
 
+.pie p:first-child {
+	margin-top: 40px;
+}
+
 .noautenticado, .local {
 	margin-top: 50px;
 	text-align: center;

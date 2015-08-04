@@ -10,7 +10,32 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require sal7711_gen/application
+//= require sip/motor
+//= require sal7711_gen/motor
+//= require lazybox
+//= require chosen-jquery
+//= require motor
 //= require_tree .
+
+$(document).on('ready page:load', function() {
+	var root;
+	root = typeof exports !== "undefined" && exports !== null ? 
+		exports : this;	
+	sip_prepara_eventos_comunes(root);
+	sal7711_gen_prepara_eventos_comunes(root);
+	sal7711_onbase_prepara_eventos_comunes(root);
+
+	formato_fecha = 'yyyy-mm-dd'
+	if ($('meta[name=formato_fecha]') != []) {
+		formato_fecha = $('meta[name=formato_fecha]').attr('content')
+	}
+	$('[data-behaviour~=datepicker]').datepicker({
+		format: formato_fecha,
+		autoclose: true,
+		todayHighlight: true,
+		language: 'es'	
+	});
+});
+
 
 
