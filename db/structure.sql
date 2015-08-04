@@ -938,7 +938,7 @@ CREATE TABLE usuario (
     diasvigencia integer,
     fecharenovacion date,
     CONSTRAINT usuario_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion))),
-    CONSTRAINT usuario_rol_check CHECK (((rol >= 1) AND (rol <= 6)))
+    CONSTRAINT usuario_rol_check CHECK ((rol >= 1))
 );
 
 
@@ -1523,4 +1523,8 @@ INSERT INTO schema_migrations (version) VALUES ('20150707164448');
 INSERT INTO schema_migrations (version) VALUES ('20150710114451');
 
 INSERT INTO schema_migrations (version) VALUES ('20150715013755');
+
+INSERT INTO schema_migrations (version) VALUES ('20150717101243');
+
+INSERT INTO schema_migrations (version) VALUES ('20150724003736');
 
