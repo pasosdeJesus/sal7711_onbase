@@ -17,14 +17,6 @@ Se requiere además freetds:
 sudo pkg_add freetds
 ```
 
-Y la gema tiny_tds en su versión 0.6.3, en el momento de este escrito esa
-versión no ha sido publicada, pero la rama master de sus fuentes en github
-sirven (las versiones 0.6.2 y anteriores presentan problemas para conexiones 
-como las que se hacen).
-
-Se deben clonar el repositorio, generar la gema e instalarla.
-
-
 ### Arquitectura
 
 Es una aplicación que emplea el motor genérico para sistemas de información
@@ -34,7 +26,7 @@ un motor genérico para archivos de prensa ```sal7711_gen```
 
 ### Configuración y uso de servidor de desarrollo
 Puede ver instrucciones por ejemplo de sivel2
-https://github.com/pasosdeJesus/sivel2
+	https://github.com/pasosdeJesus/sivel2
 
 Tenga en cuenta que para poder emplear servidor de desarrollo o producción
 debe especificar algunas variables de ambiente, por ejemplo el servidor
