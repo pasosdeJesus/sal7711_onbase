@@ -1,6 +1,10 @@
 
 es:
   attributes:
+    fecharenovacion: Fecha de la última renovación
+    diasvigencia: Dias de vigencia de la última renovación
+    fechacreacion: Fecha de creación
+    fechadeshabilitacion: Fecha de deshabilitación
   activerecord:
     attributes:
       "organizacion":
@@ -14,5 +18,5 @@ es:
   devise:
     registrations:
        usuario:
-         correo_desconocido: "Correo Desconocido"
+               correo_desconocido: "Correo Desconocido"
 

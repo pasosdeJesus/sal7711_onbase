@@ -17,6 +17,37 @@ class UsuariosController < Sip::UsuariosController
     @miurl = actualiza_usuario_url 
   end
 
+  def devise_registrations_edit
+    authorize! :read, Sal7711Gen::Categoriaprensa
+    render 'devise/registrations/edit'
+  end
+
+  def reconfirma
+    #Usuaurio.where(1).send_confirmation_instructions
+
+    #hoy = Date.today
+    #::Organizacion.all.filter
+    diasv = usuario.diasvigencia
+    fechar = usuario.fecharenovacion
+    pdom = usuario.email.split("@")
+    if pdom.count == 2 
+      dom = pdom[1]
+      org = ::Organizacion.where(dominiocorreo: dom).take
+      if org # plan corporativo correo
+        diasv = org.diasvigencia
+        fechar = org.fecharenovacion
+      end
+    end
+
+
+    fechaf = fechar + diasv
+    if hoy < fechar || hoy > fechaf
+      raise CanCan::AccessDenied.new(
+        "Sin vigencia", 
+        :read, Sip::Ubicacion)
+    end
+  end
+
   # Lista blanca de paramétros
   def usuario_params
     params.require(:usuario).permit(
@@ -30,7 +61,8 @@ class UsuariosController < Sip::UsuariosController
       :failed_attempts, :unlock_token, :locked_at,
       :last_sign_in_ip, 
       :confirmation_token, :confirmed_at, 
-      :confirmation_sent_at, :uncofirmed_email,
+      :confirmation_sent_at, 
+      :unconfirmed_email,
       :etiqueta_ids => []
     )
   end

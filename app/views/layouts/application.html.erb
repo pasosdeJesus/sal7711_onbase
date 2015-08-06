@@ -18,6 +18,7 @@
           <%= menu_item "Tablas Básicas", sip.tablasbasicas_path %>
           <%= menu_item "Consultas por usuario", "/bitacora/admin" %>
           <%= menu_item "Consultas en tiempo", "/bitacora/tiempo" %>
+          <%= menu_item "Enviar instrucciones de reconfirmación", "/usuarios/reconfirma" %>
         <% end %>
       <% end %>
       <%= menu_item "Salir #{current_usuario.nusuario}", sip.sign_out_path %>
