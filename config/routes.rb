@@ -1,12 +1,17 @@
 # encoding: UTF-8
 Rails.application.routes.draw do
   devise_scope :usuario do
-    get 'sign_out' => 'devise/sessions#destroy'
+#    get 'usuarios/edit' => 'usuarios#devise_registrations_edit', 
+#      :as => 'editar_registro_usuario'    
+#    get 'sign_out' => 'devise/sessions#destroy'
+    get 'sign_out' => 'sal7711_onbase/sessions#destroy'
     root 'devise/sessions#new'
   end
 #  devise_for :usuarios, :skip => [:registrations], module: :devise
   devise_for :usuarios, module: :devise, controllers: { registrations: "registrations" }
   as :usuario do
+#          get 'usuarios/edit' => 'usuarios#devise_registrations_edit', 
+#            :as => 'editar_registro_usuario'    
           get 'usuarios/edit' => 'devise/registrations#edit', 
             :as => 'editar_registro_usuario'    
           put 'usuarios/:id' => 'devise/registrations#update', 
@@ -15,6 +20,7 @@ Rails.application.routes.draw do
   resources :usuarios, path_names: { new: 'nuevo', edit: 'edita' } 
   post 'usuarios/crea' => 'usuarios#create', :as => 'crea_usuario'           
   patch 'usuarios/:id/actualiza' => 'usuarios#update', :as => 'actualiza_usuario'           
+  get 'usuarios/reconfirma' => 'usuarios#reconfirma'
   get 'bitacora/admin' => 'sal7711_gen/bitacora#admin', as: 'bitacora_admin'
   get 'bitacora/tiempo' => 'sal7711_gen/bitacora#tiempo', as: 'bitacora_tiempo'
 

@@ -81,6 +81,7 @@ module Sal7711Gen
     end 
 
     def prepara_pagina
+      authorize! :read, Sal7711Gen::Categoriaprensa
       conecta
       #verifica_departamentos
       #verifica_municipios
@@ -208,6 +209,7 @@ module Sal7711Gen
     end
  
     def descarga(id, rutacache)
+        authorize! :read, Sal7711Gen::Categoriaprensa
         conecta
         c="SELECT filepath, itemdata.itemname 
         FROM itemdata INNER JOIN itemdatapage 

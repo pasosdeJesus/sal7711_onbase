@@ -49,6 +49,12 @@ class Ability  < Sal7711Gen::Ability
   @@tablasbasicas_prio = Sip::Ability::BASICAS_PRIO +
     Sal7711Gen::Ability::BASICAS_PRIO 
 
+  @@ultimo_error_aut = "";
+
+  def self.ultimo_error_aut
+    @@ultimo_error_aut
+  end
+
   # Se definen habilidades con cancancan
   def initialize(usuario)
     # El primer argumento para can es la acción a la que se da permiso, 
@@ -73,6 +79,7 @@ class Ability  < Sal7711Gen::Ability
     can :lista, Sip::Ubicacion
     can :descarga_anexo, Sip::Anexo
     can :nuevo, Sip::Ubicacion
+    #byebug
     #can :nuevo, Sip::Victima
     if usuario && usuario.rol then
       diasv = usuario.diasvigencia
@@ -86,22 +93,20 @@ class Ability  < Sal7711Gen::Ability
           fechar = org.fecharenovacion
         end
       end
-      can :read, Sal7711Gen::Categoriaprensa
       case usuario.rol 
       when Ability::ROLINV, Ability::ROLINVANON
         if !diasv  || !fechar
-          raise CanCan::AccessDenied.new(
-            "Usuario sin fecha de renovación o tiempo de vigencia", 
-            :read, Sip::Ubicacion)
+          @@ultimo_error_aut = 
+            "Usuario sin fecha de renovación o tiempo de vigencia"
           return
         end
         fechaf = fechar + diasv
         hoy = Date.today
         if hoy < fechar || hoy > fechaf
-          raise CanCan::AccessDenied.new(
-            "Sin vigencia", 
-            :read, Sip::Ubicacion)
+          @@ultimo_error_aut = "Sin vigencia"
+          return
         end
+        can :read, Sal7711Gen::Categoriaprensa
         can :read, Sip::Ubicacion
         can :new, Sip::Ubicacion
         can [:update, :create, :destroy], Sip::Ubicacion
@@ -110,24 +115,24 @@ class Ability  < Sal7711Gen::Ability
         #can [:update, :create, :destroy], Sip::Actividad
       when Ability::ROLADMINORG
         if !diasv  || !fechar
-          raise CanCan::AccessDenied.new(
-            "Usuario sin fecha de renovación o tiempo de vigencia", 
-            :read, Sip::Ubicacion)
+          @@ultimo_error_aut = 
+            "Usuario sin fecha de renovación o tiempo de vigencia"
           return
         end
         fechaf = fechar + diasv
         hoy = Date.today
         if hoy < fechar || hoy > fechaf
-          raise CanCan::AccessDenied.new(
-            "Sin vigencia", 
-            :read, Sip::Ubicacion)
+          @@ultimo_error_aut = "Sin vigencia"
+          return
         end
+        can :read, Sal7711Gen::Categoriaprensa
         can :read, Sip::Ubicacion
         can :new, Sip::Ubicacion
         can [:update, :create, :destroy], Sip::Ubicacion
       when Ability::ROLINDEXADOR
         can :manage, Sip::Ubicacion
       when Ability::ROLADMIN
+        can :read, Sal7711Gen::Categoriaprensa
         can :manage, Sip::Ubicacion
         #can :manage, Sip::Actividad
         can :manage, Usuario
