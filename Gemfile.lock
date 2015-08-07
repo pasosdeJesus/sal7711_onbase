@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/pasosdeJesus/sal7711_gen.git
-  revision: dd776171e9a66ac70b4b26cc58ef93b4632351fc
+  revision: 51cf95013b57eeaeb71d1970139093f6e4bacdb7
   specs:
     sal7711_gen (1.0.a2)
       rails
@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: git://github.com/pasosdeJesus/sip.git
-  revision: a0752596accda2a40cdda909f5be2e65548c8e73
+  revision: 5b688552fcdacedade13f534dc56f108de16ca9d
   specs:
     sip (2.0.a6)
       devise
@@ -174,7 +174,7 @@ GEM
     mime-types (2.6.1)
     mimemagic (0.3.0)
     mini_portile (0.6.2)
-    minitest (5.7.0)
+    minitest (5.8.0)
     multi_json (1.11.2)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
