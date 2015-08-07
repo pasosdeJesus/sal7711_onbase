@@ -87,18 +87,21 @@ module Sal7711Gen
       #verifica_municipios
       @tablas = ["keyitem103", "itemdata"]
       w = ""
-      if (params[:fechaini] && params[:fechaini] != '')
-        pfi = @client.escape(params[:fechaini])
+      if (params[:buscar] && params[:buscar][:fechaini] && 
+          params[:buscar][:fechaini] != '')
+        pfi = @client.escape(params[:buscar][:fechaini])
         pfid = Date.strptime(pfi, '%d-%m-%Y')
         w = " AND keyvaluedate>='#{pfid.strftime('%Y-%m-%d')}'"
       end
-      if(params[:fechafin] && params[:fechafin] != '')
-        pff = @client.escape(params[:fechafin])
+      if(params[:buscar] && params[:buscar][:fechafin] && 
+         params[:buscar][:fechafin] != '')
+        pff = @client.escape(params[:buscar][:fechafin])
         pffd = Date.strptime(pff, '%d-%m-%Y')
         w += " AND keyvaluedate<='#{pffd.strftime('%Y-%m-%d')}'"
       end
-      if (params[:mundep] && params[:mundep] != '')
-        pmd = params[:mundep].split(" / ")
+      if (params[:buscar] && params[:buscar][:mundep] && 
+          params[:buscar][:mundep] != '')
+        pmd = params[:buscar][:mundep].split(" / ")
         
         if pmd.length == 1 # solo departamento
           w += cruza_tabla_consulta(108, pmd[0].slice(0,45))
@@ -108,18 +111,27 @@ module Sal7711Gen
         end
       end
   
-      if(params[:fuente] && params[:fuente][:nombre] &&
-         params[:fuente][:nombre] != '')
-        w += cruza_tabla_consulta(101, params[:fuente][:nombre])
+      if(params[:buscar] && params[:buscar][:fuente] &&
+         params[:buscar][:fuente] != '')
+        fu = Sip::Fuenteprensa.all.find(params[:buscar][:fuente])
+        if fu
+          w += cruza_tabla_consulta(101, fu.nombre)
+        else
+          w += cruza_tabla_consulta(101, 'loco')
+        end
       end
-      if(params[:pagina] && params[:pagina] != '')
-        w += cruza_tabla_consulta(104, params[:pagina])
+
+      if(params[:buscar] && params[:buscar][:pagina] && 
+         params[:buscar][:pagina] != '')
+        w += cruza_tabla_consulta(104, params[:buscar][:pagina])
       end
-      if (w == '' && (!params[:categoria] || params[:categoria] == ''))
+      if (w == '' && (!params[:buscar] || !params[:buscar][:categoria] || 
+                      params[:buscar][:categoria] == ''))
         w = " AND 1=2"
       end
-      if(params[:categoria] && params[:categoria] != '')
-        ccat = params[:categoria].upcase.split(' ')[0]
+      if(params[:buscar] && params[:buscar][:categoria] && 
+         params[:buscar][:categoria] != '')
+        ccat = params[:buscar][:categoria].upcase.split(' ')[0]
         if ccat.ends_with? "*"
           op = ' LIKE '
           cod = "#{ccat.split('*')[0]}%"
