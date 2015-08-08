@@ -23,9 +23,6 @@ gem "compass-rails"
 # Cuadros de selección para búsquedas
 gem 'chosen-rails'
 
-# Dialogo modal
-gem 'lazybox'
-
 # Tiny_TDS para MS-SQL usado por OnBase
 #gem "tiny_tds", '~> 0.6.3'
 gem 'tiny_tds', '~> 0.6.3.rc1' #, path: '../tiny_tds', ver README.md

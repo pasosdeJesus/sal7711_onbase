@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/pasosdeJesus/sal7711_gen.git
-  revision: 2af7b059881b59a8fbe13a360e9862250bd8bb01
+  revision: e6125a1f7b557ef28d3cbb84be1e0871959cdd65
   specs:
     sal7711_gen (1.0.a2)
       rails
@@ -164,7 +164,6 @@ GEM
     kgio (2.9.3)
     launchy (2.4.3)
       addressable (~> 2.3)
-    lazybox (1.1.5)
     loofah (2.0.2)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
@@ -359,7 +358,6 @@ DEPENDENCIES
   jquery-ui-bootstrap-rails!
   jquery-ui-rails
   launchy
-  lazybox
   mail_form
   paperclip (~> 4.1)
   pg
