@@ -69,6 +69,7 @@ gem "turbolinks"
 gem "twitter-bootstrap-rails"
 gem "bootstrap-datepicker-rails"
 gem "bootstrap-sass"
+gem "font-awesome-rails"
 
 # Formularios simples 
 gem "simple_form"
