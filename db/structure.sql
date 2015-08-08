@@ -644,6 +644,18 @@ CREATE TABLE sip_persona (
 
 
 --
+-- Name: sip_persona_trelacion_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE sip_persona_trelacion_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
 -- Name: sip_persona_trelacion; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -653,7 +665,8 @@ CREATE TABLE sip_persona_trelacion (
     id_trelacion character(2) DEFAULT 'SI'::bpchar NOT NULL,
     observaciones character varying(200),
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    id integer DEFAULT nextval('sip_persona_trelacion_id_seq'::regclass) NOT NULL
 );
 
 
@@ -1025,14 +1038,6 @@ ALTER TABLE ONLY sip_persona
 
 
 --
--- Name: persona_trelacion_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY sip_persona_trelacion
-    ADD CONSTRAINT persona_trelacion_pkey PRIMARY KEY (persona1, persona2, id_trelacion);
-
-
---
 -- Name: sal7711_gen_articulo_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1134,6 +1139,30 @@ ALTER TABLE ONLY sip_municipio
 
 ALTER TABLE ONLY sip_municipio
     ADD CONSTRAINT sip_municipio_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: sip_persona_trelacion_id_key; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY sip_persona_trelacion
+    ADD CONSTRAINT sip_persona_trelacion_id_key UNIQUE (id);
+
+
+--
+-- Name: sip_persona_trelacion_persona1_persona2_id_trelacion_key; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY sip_persona_trelacion
+    ADD CONSTRAINT sip_persona_trelacion_persona1_persona2_id_trelacion_key UNIQUE (persona1, persona2, id_trelacion);
+
+
+--
+-- Name: sip_persona_trelacion_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY sip_persona_trelacion
+    ADD CONSTRAINT sip_persona_trelacion_pkey PRIMARY KEY (id);
 
 
 --
@@ -1527,4 +1556,6 @@ INSERT INTO schema_migrations (version) VALUES ('20150715013755');
 INSERT INTO schema_migrations (version) VALUES ('20150717101243');
 
 INSERT INTO schema_migrations (version) VALUES ('20150724003736');
+
+INSERT INTO schema_migrations (version) VALUES ('20150803082520');
 
