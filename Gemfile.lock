@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/pasosdeJesus/sal7711_gen.git
-  revision: 14cc625f34e954d23fa6258e15e9f3fa76757d8c
+  revision: 7ce1d2ab6f2bcaa0f4a0a756b453c2c82bc8fdff
   specs:
     sal7711_gen (1.0.a2)
       rails
@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: git://github.com/pasosdeJesus/sip.git
-  revision: 5b688552fcdacedade13f534dc56f108de16ca9d
+  revision: 3db0c1a2cda3db1bb8bd06301c194d3e2f218019
   specs:
     sip (2.0.a6)
       devise
@@ -124,7 +124,7 @@ GEM
       sass-rails (<= 5.0.1)
       sprockets (< 2.13)
     debug_inspector (0.0.2)
-    devise (3.5.1)
+    devise (3.5.2)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 3.2.6, < 5)
