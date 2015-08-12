@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/pasosdeJesus/sal7711_gen.git
-  revision: 37a5dddc9fb059de29b275c5ed51824434ee3c24
+  revision: 087b21bb93822e9d6d9cfd00d46471a3b196108e
   specs:
     sal7711_gen (1.0.a2)
       rails
@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: git://github.com/pasosdeJesus/sip.git
-  revision: 3db0c1a2cda3db1bb8bd06301c194d3e2f218019
+  revision: 9ecbbb01a92ee161467601e991b1a3682cf515c6
   specs:
     sip (2.0.a6)
       devise
@@ -313,7 +313,7 @@ GEM
       tzinfo
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
-    tzinfo-data (1.2015.5)
+    tzinfo-data (1.2015.6)
       tzinfo (>= 1.0.0)
     uglifier (2.7.1)
       execjs (>= 0.3.0)
