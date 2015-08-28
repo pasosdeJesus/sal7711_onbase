@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/pasosdeJesus/sal7711_gen.git
-  revision: aafc34d0a2bd586a05767eabc928a3cec09eb981
+  revision: 39c25778614505a6487a641c40ed4a2683519321
   specs:
     sal7711_gen (1.0.a2)
       rails
@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: git://github.com/pasosdeJesus/sip.git
-  revision: 89157866df91db280b3344f6fbf211cf5176a3ad
+  revision: bb915d81a525da46379e2060271c6891c532ba58
   specs:
     sip (2.0.a6)
       devise
@@ -62,7 +62,7 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.3.8)
     arel (6.0.3)
-    autoprefixer-rails (5.2.1.2)
+    autoprefixer-rails (5.2.1.3)
       execjs
       json
     bcrypt (3.1.10)
@@ -315,7 +315,7 @@ GEM
       thread_safe (~> 0.1)
     tzinfo-data (1.2015.6)
       tzinfo (>= 1.0.0)
-    uglifier (2.7.1)
+    uglifier (2.7.2)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
     unicorn (4.9.0)
