@@ -4,8 +4,9 @@ module Sal7711Gen
     class CategoriasprensaController < Sip::Admin::BasicasController
       before_action :set_categoriaprensa, 
         only: [:show, :edit, :update, :destroy]
-      load_and_authorize_resource  class: Sal7711Gen::Categoriaprensa
-
+      #load_and_authorize_resource  class: Sal7711Gen::Categoriaprensa
+      # Categorias son públicas
+      
       def clase 
         "Sal7711Gen::Categoriaprensa"
       end

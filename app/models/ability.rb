@@ -1,4 +1,7 @@
 # encoding: UTF-8
+
+include Devise::Controllers::SignInOut
+
 class Ability  < Sal7711Gen::Ability
 
   ROLADMIN      = 1
@@ -71,17 +74,16 @@ class Ability  < Sal7711Gen::Ability
     # 
     # Detalles en el wiki de cancan: 
     #   https://github.com/ryanb/cancan/wiki/Defining-Abilities
-    if !usuario || usuario.fechadeshabilitacion
-      return
+    if !usuario
+        return
     end
+    return if usuario.fechadeshabilitacion
     can :contar, Sip::Ubicacion
     can :buscar, Sip::Ubicacion
     can :lista, Sip::Ubicacion
     can :descarga_anexo, Sip::Anexo
     can :nuevo, Sip::Ubicacion
-    #byebug
-    #can :nuevo, Sip::Victima
-    if usuario && usuario.rol then
+    if usuario.rol then
       diasv = usuario.diasvigencia
       fechar = usuario.fecharenovacion
       pdom = usuario.email.split("@")
@@ -93,6 +95,8 @@ class Ability  < Sal7711Gen::Ability
           fechar = org.fecharenovacion
         end
       end
+
+      can :read, Sal7711Gen::Articulo
       case usuario.rol 
       when Ability::ROLINV, Ability::ROLINVANON
         if !diasv  || !fechar

@@ -160,6 +160,36 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
+-- Name: ip_organizacion; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE ip_organizacion (
+    id integer NOT NULL,
+    organizacion_id integer NOT NULL,
+    ip inet NOT NULL
+);
+
+
+--
+-- Name: ip_organizacion_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE ip_organizacion_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: ip_organizacion_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE ip_organizacion_id_seq OWNED BY ip_organizacion.id;
+
+
+--
 -- Name: organizacion; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -175,7 +205,8 @@ CREATE TABLE organizacion (
     dominiocorreo character varying(500),
     pexcluyecorreo character varying(500),
     diasvigencia integer,
-    fecharenovacion date
+    fecharenovacion date,
+    usuarioip_id integer
 );
 
 
@@ -959,6 +990,13 @@ CREATE TABLE usuario (
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY ip_organizacion ALTER COLUMN id SET DEFAULT nextval('ip_organizacion_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY organizacion ALTER COLUMN id SET DEFAULT nextval('organizacion_id_seq'::regclass);
 
 
@@ -1011,6 +1049,14 @@ ALTER TABLE ONLY sip_anexo
 
 ALTER TABLE ONLY sip_etiqueta
     ADD CONSTRAINT etiqueta_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: ip_organizacion_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY ip_organizacion
+    ADD CONSTRAINT ip_organizacion_pkey PRIMARY KEY (id);
 
 
 --
@@ -1314,6 +1360,22 @@ ALTER TABLE ONLY sip_departamento
 
 
 --
+-- Name: fk_rails_2831af4765; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY ip_organizacion
+    ADD CONSTRAINT fk_rails_2831af4765 FOREIGN KEY (organizacion_id) REFERENCES organizacion(id);
+
+
+--
+-- Name: fk_rails_4eb28ebe33; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY organizacion
+    ADD CONSTRAINT fk_rails_4eb28ebe33 FOREIGN KEY (usuarioip_id) REFERENCES usuario(id);
+
+
+--
 -- Name: fk_rails_52d9d2f700; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1560,4 +1622,8 @@ INSERT INTO schema_migrations (version) VALUES ('20150724003736');
 INSERT INTO schema_migrations (version) VALUES ('20150803082520');
 
 INSERT INTO schema_migrations (version) VALUES ('20150809032138');
+
+INSERT INTO schema_migrations (version) VALUES ('20151016015543');
+
+INSERT INTO schema_migrations (version) VALUES ('20151016101736');
 

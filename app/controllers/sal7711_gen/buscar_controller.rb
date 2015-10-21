@@ -26,7 +26,28 @@ module Sal7711Gen
       password: ENV['CLAVE_DOMINIO'],
       port: 445
     }
-  
+
+    def autentica_especial
+      nips = IpOrganizacion.where('? <<= ip', request.ip).
+        count('organizacion_id', distinct: true)
+      if nips === 0
+        return false
+      elsif nips > 1
+        Ability::ultimo_error_aut = 'IP coincide con varias organizaciones'
+        return false
+      else
+        org=Organizacion.joins(:ip_organizacion).where('?<<=ip', request.ip).take
+        if !org.usuarioip_id
+          Ability::ultimo_error_aut = 'Organización sin Usuario IP'
+          return false
+        end
+        us = ::Usuario.find(org.usuarioip_id)
+        sign_in(us) #, bypass: true#, store: false
+        #@current_user.autenticado_por_ip = true
+        return true;
+      end
+    end
+
     def conecta
       if !@client || @client.dead? || !@client.active?
         @client = TinyTds::Client.new(@@hbase)
@@ -81,7 +102,7 @@ module Sal7711Gen
     end 
 
     def prepara_pagina
-      authorize! :read, Sal7711Gen::Categoriaprensa
+      authorize! :read, Sal7711Gen::Articulo
       conecta
       #verifica_departamentos
       #verifica_municipios
@@ -221,9 +242,9 @@ module Sal7711Gen
     end
  
     def descarga(id, rutacache)
-        authorize! :read, Sal7711Gen::Categoriaprensa
-        conecta
-        c="SELECT filepath, itemdata.itemname 
+      authorize! :read, Sal7711Gen::Articulo
+      conecta
+      c="SELECT filepath, itemdata.itemname 
         FROM itemdata INNER JOIN itemdatapage 
           ON itemdata.itemnum=itemdatapage.itemnum 
         WHERE itemdata.itemnum='#{id.to_s}'";

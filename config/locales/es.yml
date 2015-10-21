@@ -13,6 +13,7 @@ es:
         pexcluyecorreo: Patrón de correo por excluir de registro automático
         fecharenovacion: Fecha de la última renovación
         diasvigencia: Dias de vigencia de la última renovación
+        usuarioip_id: Usuario IP fija
         fechacreacion: Fecha de creación
         fechadeshabilitacion: Fecha de deshabilitación
   devise:

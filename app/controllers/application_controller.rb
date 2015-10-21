@@ -1,7 +1,14 @@
 # encoding: UTF-8
 
 class ApplicationController < Sip::ApplicationController
+
   protect_from_forgery with: :exception
+
+  # Sobrecargamos para permitir autenticacion basada en IP
+  def current_ability
+    @current_ability ||= ::Ability.new(current_usuario)
+  end
+
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to "/sign_out",
       alert: Ability::ultimo_error_aut + " " + exception.message 
