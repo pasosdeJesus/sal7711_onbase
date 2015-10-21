@@ -28,17 +28,18 @@ module Sal7711Gen
     }
 
     def autentica_especial
-      nips = IpOrganizacion.where('? <<= ip', request.ip).
+      puts "OJO ipx";
+      nips = ::IpOrganizacion.where('? <<= ip', request.ip).
         count('organizacion_id', distinct: true)
       if nips === 0
         return false
       elsif nips > 1
-        Ability::ultimo_error_aut = 'IP coincide con varias organizaciones'
+        ::Ability::ultimo_error_aut = 'IP coincide con varias organizaciones'
         return false
       else
-        org=Organizacion.joins(:ip_organizacion).where('?<<=ip', request.ip).take
+        org = ::Organizacion.joins(:ip_organizacion).where('?<<=ip', request.ip).take
         if !org.usuarioip_id
-          Ability::ultimo_error_aut = 'Organización sin Usuario IP'
+          ::Ability::ultimo_error_aut = 'Organización sin Usuario IP'
           return false
         end
         us = ::Usuario.find(org.usuarioip_id)
