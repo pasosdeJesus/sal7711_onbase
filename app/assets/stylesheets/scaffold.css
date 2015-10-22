@@ -88,6 +88,7 @@ div.field, div.actions {
 
 .master-container {
 	padding-bottom: 142px;
+	margin-top: 60px;
 }
 
 .footer {
@@ -150,7 +151,23 @@ h1 {
 	background-color: #239cd3;
 }
 
-.master-container {
-	margin-top: 60px;
+.logo-inst {
+	padding-top: 20px;
+	height: 70px;
 }
 
+.navbar-right {
+	margin-right: 20px;
+}
+
+.logo-cinep {
+	height: 65px;
+	margin-left:  20px;
+}
+
+.descarga-marco {
+	color: rgb(40,120,255);
+}
+.navbar-brand {
+	margin-left: 10px !important;
+}

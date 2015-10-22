@@ -2,14 +2,20 @@
   Archivo Digital de Prensa
 <% end %>
 
+<<% content_for :marca do %>
+  <img class='logo-cinep' src="https://archivoprensa.cinep.org.co/images/logo.png">
+  Archivo Digital de Prensa
+<% end %>
+
 <% content_for :menu do %>
   <%= menu_group do %>
     <% if !current_usuario.nil? %>
       <%= menu_item "Buscar", "/buscar" %>
+      <%= menu_item "Manual de Uso", "/Manual_de_Uso_Archivo_Digital_de_Prensa_CINEP.pdf", target: '_blank' %>
+      <%= menu_item "Acerca de", sip.acercade_path %>
     <% end %>
   <% end %>
   <%= menu_group :pull => :right do %>
-    <%= menu_item "Acerca de", sip.acercade_path %>
     <% if false && !current_usuario.nil? %> <!-- si es solo ip no dejar -->
       <%= drop_down "Administrar" do %> 
         <%= menu_item "Clave", sip.editar_registro_usuario_path %> 
@@ -25,7 +31,7 @@
     <% else %>
       <!--%= menu_item "Inscribirse", "https://archivoprensa.cinep.org.co/usuarios/sign_up" %-->
       <!--%= menu_item "Ingresar", "https://archivoprensa.cinep.org.co/usuarios/sign_in" %-->
-      <li><img src="http://biblioteca.uniandes.edu.co/templates/bibliotecas/images/logo-uniandes.png"></li>
+      <li><img class='logo-inst' src="http://biblioteca.uniandes.edu.co/templates/bibliotecas/images/logo-uniandes.png"></span></li>
     <% end %>
   <% end %>
 <% end %>
