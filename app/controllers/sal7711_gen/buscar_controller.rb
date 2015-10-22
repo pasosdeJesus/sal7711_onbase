@@ -6,6 +6,7 @@ require 'sambal'
 
 module Sal7711Gen
   class BuscarController < ApplicationController
+    #skip_before_action :verify_authenticity_token  # Solo en casos de EZ-Proxy
 
     include Sal7711Gen::Concerns::Controllers::BuscarController
   
