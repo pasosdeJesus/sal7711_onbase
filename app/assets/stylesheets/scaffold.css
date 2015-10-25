@@ -2,7 +2,7 @@ body {
 	background-color: #f0f0f0; 
 	color: #333; 
 	height: 100%;
-	margin-bottom: 60px;
+	margin-bottom: 0px;
 }
 
 html {
@@ -87,21 +87,21 @@ div.field, div.actions {
 }
 
 .master-container {
-	padding-bottom: 142px;
-	margin-top: 60px;
+	padding-bottom: 0;
+	margin-top: 75px;
 }
 
 .footer {
 	height: 142px;
 	left: 0;
-	position: absolute;
+	position: relative;
 	bottom: 0;
 	width: 100%;
-
 	background: #239cd3;
 	color: #a0d6ef;
 	text-align: center;
 	line-height: 1.5;
+	padding-top: 1px;
 }
 
 footer a {

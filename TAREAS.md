@@ -24,9 +24,8 @@ Los que tienen una carpeta deja:
 
 
 
-* Probar desde https://biblioteca.uniandes.edu.co/index.php?lang=es
-* Dejar acceso basado en IP desde archivo:3777, sacar ese de https://archivo
-* En https://archivo añadir uniandes con plan por correo.   
+* Probar desde https://biblioteca.uniandes.edu.co/index.php?lang=es  se dio acceso a Alejandro
+
 * Que https reconozca la IP remotea y/o que solo vaya a HTTPS para suscribir o autenticacion y sigue basado en aut. institucional.
   Dicen que no estan dispuestos a asumir compra y renovacion de certificado https.   Probarán agregando dominio https al
   balanceador (les sirve para jstor y otros que muestra problema de certificado).
@@ -37,7 +36,6 @@ Los que tienen una carpeta deja:
 * No hay 
 
 * Al autenticar por IP permite hacer busquedas, pero ademas permite suscribir usuarios e inscribir para guardar cosas personalizadas como: historial de bùsquedas, fuentes predeterminadas para búsquedas-
-* Bonus grande: permite acceso a egresados.
 
 
 
