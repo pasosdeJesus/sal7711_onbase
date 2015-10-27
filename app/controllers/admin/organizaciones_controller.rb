@@ -16,8 +16,9 @@ module Admin
 		def atributos_index
       ["id", "nombre", "observaciones", "autoregistro", 
        "dominiocorreo", "pexcluyecorreo", "fecharenovacion",
-       "diasvigencia", "ip_organizacion", "usuarioip_id", "fechacreacion", 
-       "fechadeshabilitacion"  ]
+       "diasvigencia", "ip_organizacion", "usuarioip_id", 
+       "url_logoinst",
+       "fechacreacion", "fechadeshabilitacion"  ]
 		end
 
 		def organizacion_params
