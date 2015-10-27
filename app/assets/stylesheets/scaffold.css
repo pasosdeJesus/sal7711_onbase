@@ -2,7 +2,7 @@ body {
 	background-color: #f0f0f0; 
 	color: #333; 
 	height: 100%;
-	margin-bottom: 60px;
+	margin-bottom: 0px;
 }
 
 html {
@@ -87,13 +87,14 @@ div.field, div.actions {
 }
 
 .master-container {
-	padding-bottom: 142px;
+	padding-bottom: 0;
+	margin-top: 75px;
 }
 
 .footer {
 	height: 142px;
 	left: 0;
-	position: absolute;
+	position: relative;
 	bottom: 0;
 	width: 100%;
 
@@ -101,6 +102,7 @@ div.field, div.actions {
 	color: #a0d6ef;
 	text-align: center;
 	line-height: 1.5;
+	padding-top: 1px;
 }
 
 footer a {
@@ -149,3 +151,27 @@ h1 {
 .ultimo-visto {
 	background-color: #239cd3;
 }
+
+.logo-inst {
+       padding-top: 20px;
+       height: 70px;
+}
+
+.navbar-right {
+       margin-right: 20px;
+}
+
+.logo-cinep {
+       height: 65px;
+       margin-left:  20px;
+}
+
+.descarga-marco {
+       color: rgb(40,120,255);
+       font-weight: normal;
+}
+
+.navbar-brand {
+       margin-left: 10px !important;
+}
+
