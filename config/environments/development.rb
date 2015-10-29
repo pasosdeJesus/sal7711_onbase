@@ -43,4 +43,6 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { :host => ENV['SAL7711_ONBASE_SERV'] }
   
   config.default_url_options = { :host => ENV['SAL7711_ONBASE_SERV'] }
+
+  config.web_console.whitelisted_ips = '181.48.230.114'
 end

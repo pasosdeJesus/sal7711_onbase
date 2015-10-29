@@ -28,6 +28,5 @@ module Sal7711
 
     config.formato_fecha = 'dd-mm-yyyy'
 
-    config.web_console.whitelisted_ips = '186.29.38.71'
   end
 end
