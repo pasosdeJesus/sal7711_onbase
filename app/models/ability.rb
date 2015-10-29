@@ -58,6 +58,11 @@ class Ability  < Sal7711Gen::Ability
     @@ultimo_error_aut
   end
 
+  def self.ultimo_error_aut=(v)
+    @@ultimo_error_aut = v
+  end
+
+
   # Se definen habilidades con cancancan
   def initialize(usuario)
     # El primer argumento para can es la acción a la que se da permiso, 
