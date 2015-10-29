@@ -11,7 +11,6 @@ module Sal7711Gen
 
     def autenticado_por_ip?
       if current_usuario
-        byebug
         c = ::Organizacion.where('usuarioip_id = ?', current_usuario.id).count('*')
         return c > 0
       end
@@ -43,6 +42,7 @@ module Sal7711Gen
     def autentica_especial
       nips = ::IpOrganizacion.where('? <<= ip', request.ip).
         count('organizacion_id', distinct: true)
+      #byebug
       if nips === 0
         if (current_usuario && ::Organizacion.
             where('usuarioip_id=?', current_usuario.id).
@@ -54,11 +54,13 @@ module Sal7711Gen
         return false
       elsif nips > 1
         ::Ability::ultimo_error_aut = 'IP coincide con varias organizaciones'
+        puts "** Error: ", ::Ability::ultimo_error_aut 
         return false
       else
         org = ::Organizacion.joins(:ip_organizacion).where('?<<=ip', request.ip).take
         if !org.usuarioip_id
-          ::Ability::ultimo_error_aut = 'Organización sin Usuario IP'
+          ::Ability.ultimo_error_aut = 'Organización sin Usuario IP'
+          puts "** Error: ", ::Ability::ultimo_error_aut 
           return false
         end
         us = ::Usuario.find(org.usuarioip_id)
