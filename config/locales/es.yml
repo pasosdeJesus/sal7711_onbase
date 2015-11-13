@@ -14,8 +14,11 @@ es:
         fecharenovacion: Fecha de la última renovación
         diasvigencia: Dias de vigencia de la última renovación
         usuarioip_id: Usuario IP fija
-        fechacreacion: Fecha de creación
+        fechacreacion: Fecha de Creación
         fechadeshabilitacion: Fecha de deshabilitación
+        url_logoinst: URL del logo (con https)
+      "sal7711_gen/articulo":
+        filtro: Información disponible desde 1992
   devise:
     registrations:
        usuario:

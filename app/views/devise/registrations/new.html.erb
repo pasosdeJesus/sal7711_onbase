@@ -9,43 +9,49 @@
   <a href="mailto:sig@cinep.org.co">sig@cinep.org.co</a>.
 </div>
 
-
-<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <div id="errores">
-    <% if f.object.errors.any? %>
-      <div id="error_explanation">
-        <div class="alert alert-error">
-          El formulario tiene 
-          <%= pluralize(f.object.errors.count, "error") %>.
+<% if request.ssl? %>
+  <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+    <div id="errores">
+      <% if f.object.errors.any? %>
+        <div id="error_explanation">
+          <div class="alert alert-error">
+            El formulario tiene 
+            <%= pluralize(f.object.errors.count, "error") %>.
+          </div>
+          <ul>
+            <% f.object.errors.full_messages.each do |msg| %>
+              <li>* <%= msg %></li>
+            <% end %>
+          </ul>
         </div>
-        <ul>
-          <% f.object.errors.full_messages.each do |msg| %>
-            <li>* <%= msg %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
-    <%= f.error_notification %>
-  </div>
-
-  <div class="form-inputs">
-    <%= f.input :email, 
-      label: 'Correo electrónico',
-      :required => true, :autofocus => true 
-    %>
-    <%= f.input :password, 
-      label: 'Clave',
-      :required => true 
-    %>
-    <%= f.input :password_confirmation, 
-      label: 'Confirmación de Clave',
-      :required => true 
-    %>
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Inscribirse" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+      <% end %>
+      <%= f.error_notification %>
+    </div>
+  
+    <div class="form-inputs">
+      <%= f.input :email, 
+        label: 'Correo electrónico',
+        :required => true, :autofocus => true 
+      %>
+      <%= f.input :password, 
+        label: 'Clave',
+        :required => true 
+      %>
+      <%= f.input :password_confirmation, 
+        label: 'Confirmación de Clave',
+        :required => true 
+      %>
+    </div>
+  
+    <div class="form-actions">
+      <%= f.button :submit, "Inscribirse" %>
+    </div>
+  <% end %>
+  <%= render "devise/shared/links" %>
+  
+ <% else %>
+  <h3>Favor 
+    <%= link_to 'usar este enlace para registrarse', 
+      new_usuario_registration_url(protocol: 'https', port: 443) 
+    %></h3>
+  <% end %>

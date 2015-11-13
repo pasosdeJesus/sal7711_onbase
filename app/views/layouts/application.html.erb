@@ -2,19 +2,23 @@
   Archivo Digital de Prensa
 <% end %>
 
+<% content_for :marca do %>
+  <img class='logo-cinep' src="/images/logo.png">
+  Archivo Digital de Prensa
+<% end %>
+
 <% content_for :menu do %>
   <%= menu_group do %>
-    <% if !current_usuario.nil? %>
+    <% if current_usuario %>
       <%= menu_item "Buscar", "/buscar" %>
+      <%= menu_item "Manual de Uso", "/Manual_de_Uso_Archivo_Digital_de_Prensa_CINEP.pdf", target: '_blank' %>
+      <%= menu_item "Acerca de", sip.acercade_path %>
     <% end %>
   <% end %>
   <%= menu_group :pull => :right do %>
-    <%= menu_item "Acerca de", sip.acercade_path %>
-    <% if !current_usuario.nil? %>
+    <% if current_usuario && !current_usuario.autenticado_por_ip %>
       <%= drop_down "Administrar" do %>
-        <!--% if !ip_autentica? %-->
-          <%= menu_item "Clave", sip.editar_registro_usuario_path %>
-        <!--% end %-->
+        <%= menu_item "Clave", sip.editar_registro_usuario_path %>
         <% if current_usuario.rol == Ability::ROLADMIN %>
           <%= menu_item "Usuarios", sip.usuarios_path %>
           <%= menu_item "Tablas Básicas", sip.tablasbasicas_path %>
@@ -25,7 +29,20 @@
       <% end %>
       <%= menu_item "Salir #{current_usuario.nusuario}", sip.sign_out_path %>
     <% else %>
-      <%= menu_item "Inscribirse", "/usuarios/sign_up" %>
+      <% if !current_usuario || current_usuario.autenticado_por_ip %>
+        <%= menu_item "Ingresar", 
+          Rails.application.routes.url_helpers.new_usuario_session_url(protocol: 'https', port: 443, host: 'archivoprensa.cinep.org.co') 
+        %> 
+      <% end %>
+      <%= menu_item "Inscribirse", 
+        Rails.application.routes.url_helpers.new_usuario_registration_url(protocol: 'https', port: 443, host: 'archivoprensa.cinep.org.co') 
+      %>
+      <% if current_usuario && current_usuario.autenticado_por_ip %>
+        <% url = ::Organizacion.where('usuarioip_id = ?', current_usuario.id).take.url_logoinst %>
+        <% if url %>
+          <li><img class='logo-inst' src="<%= url %>"></span></li>
+        <% end %>
+      <%end %>
     <% end %>
   <% end %>
 <% end %>
@@ -36,8 +53,9 @@
     parcialmente, siempre y cuando se cite como fuente al <a href="http://www.cinep.org.co">CINEP/Programa 
       por la Paz</a>.</p>
     <p>Teléfono: (57)(1) 245.6181  /  Fax: (57)(1) 287.9089  /  Email: <a href="mailto:cinep@cinep.org.co">cinep@cinep.org.co</a>  /  Dirección: Cra 5 No. 33B- 02 Bogotá, Colombia.</p>
-  <p>Sistema de información desarrollado por <a href="http://www.pasosdeJesus.org">Pasos de Jesús</a></p>
-</div>
+    <p>Sistema de información desarrollado por 
+      <a href="http://www.pasosdeJesus.org">Pasos de Jesús</a>
+    </p>
   </div>
 <% end %>
 

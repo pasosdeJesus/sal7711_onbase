@@ -6,10 +6,22 @@ require 'sambal'
 
 module Sal7711Gen
   class BuscarController < ApplicationController
+    skip_before_action :verify_authenticity_token, if: :autenticado_por_ip?
+    # Necesario para EZ-Proxy, por lo mismo se requiere authorize en otros métodos
+
+    def autenticado_por_ip?
+      if current_usuario
+        c = ::Organizacion.where('usuarioip_id = ?', current_usuario.id).count('*')
+        return c > 0
+      end
+      return false
+    end
 
     include Sal7711Gen::Concerns::Controllers::BuscarController
   
     include ActionView::Helpers::AssetUrlHelper
+    
+    #helper Rails.application.routes.url_helpers
 
     # Conexión a base de datos
     @@hbase = {:username => ENV["USUARIO_HBASE"],
@@ -31,20 +43,31 @@ module Sal7711Gen
       puts "OJO ipx, request=", request.inspect;
       nips = ::IpOrganizacion.where('? <<= ip', request.remote_ip).
         count('organizacion_id', distinct: true)
+      #byebug
       if nips === 0
+        if (current_usuario && ::Organizacion.
+            where('usuarioip_id=?', current_usuario.id).
+            count('*') > 0)
+          # Si la organización ya no se autentica por IP se termina
+          # sesión de usuario
+          sign_out(current_usuario)
+        end
         return false
       elsif nips > 1
         ::Ability::ultimo_error_aut = 'IP coincide con varias organizaciones'
+        puts "** Error: ", ::Ability::ultimo_error_aut 
         return false
       else
         org = ::Organizacion.joins(:ip_organizacion).where('?<<=ip', request.remote_ip).take
         if !org.usuarioip_id
-          ::Ability::ultimo_error_aut = 'Organización sin Usuario IP'
+          ::Ability.ultimo_error_aut = 'Organización sin Usuario IP'
+          puts "** Error: ", ::Ability::ultimo_error_aut 
           return false
         end
         us = ::Usuario.find(org.usuarioip_id)
         sign_in(us) #, bypass: true#, store: false
-        #@current_user.autenticado_por_ip = true
+        #byebug
+        current_usuario.autenticado_por_ip = true
         return true;
       end
     end
