@@ -40,7 +40,7 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
-  config.web_console.whitelisted_ips = '181.48.230.114'
+  config.web_console.whitelisted_ips = ['157.253.50.51', '181.48.230.114']
 
   config.action_mailer.default_url_options = { 
     protocol: 'https',
