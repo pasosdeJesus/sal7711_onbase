@@ -6,7 +6,7 @@ require 'sambal'
 
 module Sal7711Gen
   class BuscarController < ApplicationController
-    skip_before_action :verify_authenticity_token, if: :autenticado_por_ip?
+    #skip_before_action :verify_authenticity_token, if: :autenticado_por_ip?
     # Necesario para EZ-Proxy, por lo mismo se requiere authorize en otros métodos
 
     def autenticado_por_ip?
@@ -40,8 +40,10 @@ module Sal7711Gen
     }
 
     def autentica_especial
+      if current_usuario
+        return true
+      end
       # Funciona Rails.configuration.action_mailer.default_url_options[:host] = 'http://archivoprensa.loco.cinep.org.co:11443/'
-
       nips = ::IpOrganizacion.where('? <<= ip', request.ip).
         count('organizacion_id', distinct: true)
       #byebug
@@ -69,6 +71,7 @@ module Sal7711Gen
         sign_in(us) #, bypass: true#, store: false
         #byebug
         current_usuario.autenticado_por_ip = true
+        current_usuario.save!
         return true;
       end
     end
