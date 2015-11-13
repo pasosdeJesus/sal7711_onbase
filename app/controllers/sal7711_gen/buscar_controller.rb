@@ -10,11 +10,7 @@ module Sal7711Gen
     # Necesario para EZ-Proxy, por lo mismo se requiere authorize en otros métodos
 
     def autenticado_por_ip?
-      if current_usuario
-        c = ::Organizacion.where('usuarioip_id = ?', current_usuario.id).count('*')
-        return c > 0
-      end
-      return false
+      current_usuario && current_usuario.autenticado_por_ip
     end
 
     include Sal7711Gen::Concerns::Controllers::BuscarController
@@ -67,6 +63,26 @@ module Sal7711Gen
           puts "** Error: ", ::Ability::ultimo_error_aut 
           return false
         end
+        if org.opciones_urls_nombre_cif
+          Rails.configuration.action_mailer.default_url_options[:host] = 
+            org.opciones_urls_nombre_cif
+        end
+        if org.opciones_urls_puerto_cif
+          Rails.configuration.action_mailer.default_url_options[:port] = 
+            org.opciones_urls_puerto_cif
+        end
+        if org.opciones_urls_nombre_nocif
+          Rails.configuration.x.serv_nocif[:host] = 
+            org.opciones_urls_nombre_nocif
+        end
+        if org.opciones_urls_puerto_nocif
+          Rails.configuration.x.serv_nocif[:port] = 
+            org.opciones_urls_puerto_nocif
+        end
+        puts "Rails.configuration.action_mailer.default_url_options=",
+          Rails.configuration.action_mailer.default_url_options
+        puts "Rails.configuration.x.serv_nocif=",
+          Rails.configuration.x.serv_nocif
         us = ::Usuario.find(org.usuarioip_id)
         sign_in(us) #, bypass: true#, store: false
         #byebug

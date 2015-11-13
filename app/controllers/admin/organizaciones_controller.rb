@@ -18,6 +18,10 @@ module Admin
        "dominiocorreo", "pexcluyecorreo", "fecharenovacion",
        "diasvigencia", "ip_organizacion", "usuarioip_id", 
        "url_logoinst",
+       "opciones_url_nombre_cif",
+       "opciones_url_puerto_cif",
+       "opciones_url_nombre_nocif",
+       "opciones_url_puerto_nocif",
        "fechacreacion", "fechadeshabilitacion"  ]
 		end
 
