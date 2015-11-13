@@ -1,5 +1,16 @@
-class RegistrationsController < Devise::RegistrationsController 
+# encoding: UTF-8
+
+require 'devise/registrations_controller'
+
+class ::RegistrationsController < Devise::RegistrationsController 
+
+  # Ver SessionsController
+  skip_before_filter :require_no_authentication
+
   def new
+    if current_usuario && current_usuario.autenticado_por_ip
+        sign_out(current_usuario)
+    end
     build_resource({})
     respond_with self.resource
   end

@@ -4,8 +4,10 @@ Rails.application.routes.draw do
 #    get 'usuarios/edit' => 'usuarios#devise_registrations_edit', 
 #      :as => 'editar_registro_usuario'    
 #    get 'sign_out' => 'devise/sessions#destroy'
-    get 'sign_out' => 'sal7711_onbase/sessions#destroy'
-    root 'devise/sessions#new'
+    get 'sign_out' => 'sessions#destroy'
+    get 'usuarios/sign_in' => 'sessions#new'
+    get 'usuarios/sign_up' => 'registrations#new'
+    root 'sessions#new'
   end
 #  devise_for :usuarios, :skip => [:registrations], module: :devise
   devise_for :usuarios, module: :devise, controllers: { registrations: "registrations" }

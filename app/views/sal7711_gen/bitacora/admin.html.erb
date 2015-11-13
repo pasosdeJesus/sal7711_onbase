@@ -3,8 +3,7 @@
 </div>
 
 <div sytle="text-align: right">
-  <!--%= form_tag('bitacora/admin', method: "get", remote: true) do %-->
-  <%= form_tag(bitacora_admin, method: "get", remote: true) do %>
+  <%= form_tag('/bitacora/admin', method: "get", remote: true) do %>
       Recepción entre:
     <%= text_field_tag 'fechaini', @fechaini, maxlength: 10, size: 12,
       "data-behaviour" => "datepicker", "data-contarautomatico" => ""
@@ -14,27 +13,14 @@
       "data-behaviour" => "datepicker", "data-contarautomatico" => ""
     %>
     <br>
-    Según:
-    <%= select_tag "segun",
-      options_for_select(
-        ["", "MES RECEPCIÓN", "RANGO DE EDAD", "ACTIVIDAD / OFICIO", "SEXO"]
-      ),
-      "data-contarautomatico" => ""
-    %>
-    Oficina:
+    Organización:
     <% o = options_from_collection_for_select(
-         Sip::Oficina.habilitados, "id", "nombre"
+         ::Organizacion.habilitados, "id", "nombre"
       )
     %>
-    <%= select_tag "oficina", o,
+    <%= select_tag "organizacion", o,
       {include_blank: true, "data-contarautomatico" => ""}
     %>
-    <br>
-    Última expulsión:
-    <%= check_box_tag 'departamento', 1, false, "data-contarautomatico" => "" %>
-    Departamento,
-    <%= check_box_tag 'municipio', 1, false, "data-contarautomatico" => "" %>
-    Municipio<br>
     <%= submit_tag("Contar") %>
   <% end %>
 </div>

@@ -17,6 +17,10 @@ es:
         fechacreacion: Fecha de Creación
         fechadeshabilitacion: Fecha de deshabilitación
         url_logoinst: URL del logo (con https)
+        opciones_url_nombre_cif: Nombre de servidor https (si usa EZProxy)
+        opciones_url_puerto_cif: Puerto de servidor https (si usa EZProxy)
+        opciones_url_nombre_nocif: Nombre de servidor http (si usa EZProxy)
+        opciones_url_puerto_nocif: Puerto de servidor http (si usa EZProxy)
       "sal7711_gen/articulo":
         filtro: Información disponible desde 1992
   devise:

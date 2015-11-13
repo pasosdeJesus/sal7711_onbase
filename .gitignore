@@ -17,7 +17,7 @@ config/database.yml
 /tmp
 *~
 public/assets/
-
+public/colchon-articulos/
 herram/
 ref/
 public/*vdi
