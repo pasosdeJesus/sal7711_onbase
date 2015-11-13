@@ -7,6 +7,22 @@ module Sal7711Gen
  
     include Sal7711Gen::Concerns::Controllers::BitacoraController
 
+    # Prepara una página de resultados
+    def usuario
+      if !current_usuario
+        authorize! :buscar, :index
+      end
+      @consultas = Bitacora.all.where(
+        usuario_id: current_usuario.id,
+        operacion: 'index').order('fecha desc').limit(@@porpag)
+
+      respond_to do |format|
+        format.html { render partial: 'consultausuario' }
+        format.json { head :no_content }
+        format.js   { render partial: 'consultausuario' }
+      end
+    end
+
     def admin
       @usuarioscons = Sal7711Gen::Bitacora.connection.select_rows(
         "SELECT nusuario, count(*) FROM sal7711_gen_bitacora 

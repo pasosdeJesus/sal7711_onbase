@@ -40,6 +40,8 @@ module Sal7711Gen
     }
 
     def autentica_especial
+      # Funciona Rails.configuration.action_mailer.default_url_options[:host] = 'http://archivoprensa.loco.cinep.org.co:11443/'
+
       nips = ::IpOrganizacion.where('? <<= ip', request.ip).
         count('organizacion_id', distinct: true)
       #byebug

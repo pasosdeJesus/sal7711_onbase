@@ -49,9 +49,11 @@
   <% end %>
   <%= render "devise/shared/links" %>
   
- <% else %>
+<% else %>
+  <% urlop = Rails.configuration.action_mailer.default_url_options %>
   <h3>Favor 
     <%= link_to 'usar este enlace para registrarse', 
-      new_usuario_registration_url(protocol: 'https', port: 443) 
-    %></h3>
-  <% end %>
+      new_usuario_registration_url(urlop) 
+    %>
+  </h3>
+<% end %>

@@ -29,16 +29,19 @@
       <% end %>
       <%= menu_item "Salir #{current_usuario.nusuario}", sip.sign_out_path %>
     <% else %>
+      <% urlop = Rails.configuration.action_mailer.default_url_options %>
       <% if !current_usuario || current_usuario.autenticado_por_ip %>
         <%= menu_item "Ingresar", 
-          Rails.application.routes.url_helpers.new_usuario_session_url(protocol: 'https', port: 443, host: 'archivoprensa.cinep.org.co') 
+          Rails.application.routes.url_helpers.new_usuario_session_url( urlop )
         %> 
       <% end %>
       <%= menu_item "Inscribirse", 
-        Rails.application.routes.url_helpers.new_usuario_registration_url(protocol: 'https', port: 443, host: 'archivoprensa.cinep.org.co') 
+        Rails.application.routes.url_helpers.new_usuario_registration_url(urlop)
       %>
       <% if current_usuario && current_usuario.autenticado_por_ip %>
-        <% url = ::Organizacion.where('usuarioip_id = ?', current_usuario.id).take.url_logoinst %>
+        <% puts "current_usuario es ", current_usuario.inspect %>
+        <% org = ::Organizacion.where('usuarioip_id = ?', current_usuario.id).take
+           url = org ? org.url_logoinst : nil  %>
         <% if url %>
           <li><img class='logo-inst' src="<%= url %>"></span></li>
         <% end %>

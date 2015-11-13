@@ -40,9 +40,19 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
-  config.action_mailer.default_url_options = { :host => ENV['SAL7711_ONBASE_SERV'] }
-  
-  config.default_url_options = { :host => ENV['SAL7711_ONBASE_SERV'] }
-
   config.web_console.whitelisted_ips = '181.48.230.114'
+
+  config.action_mailer.default_url_options = { 
+    protocol: 'https',
+    host: ENV['SAL7711_ONBASE_SERV'],
+    port: ENV['SAL7711_ONBASE_SERV_PUERTO'] || 443
+  }
+
+  # nombre de servidor no cifrado --puede cambiar en caso de ezproxy
+  config.x.serv_nocif = {
+    protocolo: 'http',
+    host: ENV['SAL7711_ONBASE_SERV_NOCIF'] || config.action_mailer.default_url_options[:host],
+    port: ENV['SAL7711_ONBASE_SERV_NOCIF_PUERTO'] || 80
+  }
+
 end

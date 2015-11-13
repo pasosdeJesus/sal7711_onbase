@@ -23,9 +23,12 @@
     <% end %>
   <% else %>
     <h3>Favor 
-      <%= link_to 'usar este enlace para autenticarse', 
-        new_usuario_session_url(protocol: 'https', port: 443) 
-      %></h3>
+      <% urlop = Rails.configuration.action_mailer.default_url_options %>
+      <%= puts "urlop=", urlop %>
+      <%= link_to 'usar este enlace para registrarse', 
+        new_usuario_registration_url(urlop) 
+      %>
+    </h3>
   <% end %>
   <div class="local">
     <%= render "sip/hogar/local" %>

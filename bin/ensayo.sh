@@ -38,14 +38,23 @@ if (test "${CLAVE_DOMINIO}" = "") then {
 	echo "Definir clave en dominio en CLAVE_DOMINIO"
 	exit 1;
 } fi;
-if (test "${CLAVE_DOMINIO}" = "") then {
-	echo "Definir clave en dominio en CLAVE_DOMINIO"
-	exit 1;
-} fi;
 if (test "${SAL7711_ONBASE_SERV}" = "") then {
-	echo "Definir clave en dominio en SAL7711_ONBASE_SERV"
+	echo "Definir nombre servidor cifrado en SAL7711_ONBASE_SERV"
 	exit 1;
 } fi;
+if (test "${SAL7711_ONBASE_SERV_PUERTO}" = "") then {
+	echo "Definir puerto servidor cifrado en SAL7711_ONBASE_SERV_PUERTO"
+	exit 1;
+} fi;
+if (test "${SAL7711_ONBASE_SERV_NOCIF}" = "") then {
+	echo "Definir nombre del servidor no cifrado en SAL7711_ONBASE_SERV_NOCIF"
+	exit 1;
+} fi;
+if (test "${SAL7711_ONBASE_SERV_NOCIF_PUERTO}" = "") then {
+	echo "Definir puerto servidor no cifrado en SAL7711_ONBASE_SERV_NOCIF_PUERTO"
+	exit 1;
+} fi;
+
 
 echo "OJO variables USUARIO_AP=${USUARIO_AP}" 
 mp=`ulimit -p`
