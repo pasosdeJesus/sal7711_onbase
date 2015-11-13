@@ -62,21 +62,21 @@ module Sal7711Gen
           puts "** Error: ", ::Ability::ultimo_error_aut 
           return false
         end
-        if org.opciones_urls_nombre_cif
+        if org.opciones_url_nombre_cif
           Rails.configuration.action_mailer.default_url_options[:host] = 
-            org.opciones_urls_nombre_cif
+            org.opciones_url_nombre_cif
         end
-        if org.opciones_urls_puerto_cif
+        if org.opciones_url_puerto_cif
           Rails.configuration.action_mailer.default_url_options[:port] = 
-            org.opciones_urls_puerto_cif
+            org.opciones_url_puerto_cif
         end
-        if org.opciones_urls_nombre_nocif
+        if org.opciones_url_nombre_nocif
           Rails.configuration.x.serv_nocif[:host] = 
-            org.opciones_urls_nombre_nocif
+            org.opciones_url_nombre_nocif
         end
-        if org.opciones_urls_puerto_nocif
+        if org.opciones_url_puerto_nocif
           Rails.configuration.x.serv_nocif[:port] = 
-            org.opciones_urls_puerto_nocif
+            org.opciones_url_puerto_nocif
         end
         puts "Rails.configuration.action_mailer.default_url_options=",
           Rails.configuration.action_mailer.default_url_options

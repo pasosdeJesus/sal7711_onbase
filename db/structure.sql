@@ -207,7 +207,11 @@ CREATE TABLE organizacion (
     diasvigencia integer,
     fecharenovacion date,
     usuarioip_id integer,
-    url_logoinst character varying(1000)
+    url_logoinst character varying(1000),
+    opciones_url_nombre_cif character varying(1000),
+    opciones_url_puerto_cif integer,
+    opciones_url_nombre_nocif character varying(1000),
+    opciones_url_puerto_nocif integer
 );
 
 
@@ -982,6 +986,7 @@ CREATE TABLE usuario (
     unconfirmed_email character varying,
     diasvigencia integer,
     fecharenovacion date,
+    autenticado_por_ip boolean,
     CONSTRAINT usuario_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion))),
     CONSTRAINT usuario_rol_check CHECK ((rol >= 1))
 );
@@ -1564,7 +1569,7 @@ ALTER TABLE ONLY sip_ubicacion
 -- PostgreSQL database dump complete
 --
 
-SET search_path TO public, pg_catalog;
+SET search_path TO "$user",public;
 
 INSERT INTO schema_migrations (version) VALUES ('20150327104439');
 
@@ -1631,4 +1636,8 @@ INSERT INTO schema_migrations (version) VALUES ('20151016101736');
 INSERT INTO schema_migrations (version) VALUES ('20151020203421');
 
 INSERT INTO schema_migrations (version) VALUES ('20151027111828');
+
+INSERT INTO schema_migrations (version) VALUES ('20151113104833');
+
+INSERT INTO schema_migrations (version) VALUES ('20151113185225');
 
