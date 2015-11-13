@@ -80,8 +80,6 @@ GEM
       autoprefixer-rails (>= 5.0.0.1)
       sass (>= 3.3.0)
     builder (3.2.2)
-    byebug (5.0.0)
-      columnize (= 0.9.0)
     camertron-eprun (1.1.0)
     cancancan (1.13.1)
     capybara (2.4.4)
@@ -115,7 +113,6 @@ GEM
       execjs
     coffee-script-source (1.10.0)
     colorize (0.7.7)
-    columnize (0.9.0)
     compass (1.0.3)
       chunky_png (~> 1.2)
       compass-core (~> 1.0.2)
@@ -349,7 +346,6 @@ DEPENDENCIES
   bcrypt
   bootstrap-datepicker-rails
   bootstrap-sass
-  byebug
   cancancan
   capybara
   capybara-webkit (= 1.4.1)
