@@ -2,7 +2,8 @@
 
 class ApplicationController < Sip::ApplicationController
 
-  protect_from_forgery with: :exception
+  #protect_from_forgery with: :exception
+  # intentar skip_before_action :verify_authenticity_token
 
   # Sobrecargamos para permitir autenticacion basada en IP
   def current_ability

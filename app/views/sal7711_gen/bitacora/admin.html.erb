@@ -3,7 +3,8 @@
 </div>
 
 <div sytle="text-align: right">
-  <%= form_tag('bitacora/admin', method: "get", remote: true) do %>
+  <!--%= form_tag('bitacora/admin', method: "get", remote: true) do %-->
+  <%= form_tag(bitacora_admin, method: "get", remote: true) do %>
       Recepción entre:
     <%= text_field_tag 'fechaini', @fechaini, maxlength: 10, size: 12,
       "data-behaviour" => "datepicker", "data-contarautomatico" => ""
