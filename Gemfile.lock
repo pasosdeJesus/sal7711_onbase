@@ -404,7 +404,7 @@ DEPENDENCIES
   sip!
   spring
   spring-commands-rspec
-  tiny_tds (~> 0.6.3.rc1)
+  tiny_tds
   turbolinks
   twitter-bootstrap-rails
   twitter_cldr
