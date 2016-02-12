@@ -32,12 +32,12 @@
         <% end %>
         <%= menu_item "Salir #{current_usuario.nusuario}", sip.sign_out_path %>
       <% else %>
-        <%= menu_item "Ingresar", 
+        <!--%= menu_item "Ingresar", 
           Rails.application.routes.url_helpers.new_usuario_session_url( urlop )
-        %> 
-        <%= menu_item "Inscribirse", 
+        %--> 
+        <!--%= menu_item "Inscribirse", 
           Rails.application.routes.url_helpers.new_usuario_registration_url(urlop)
-        %>
+        %-->
         <% puts "current_usuario es ", current_usuario.inspect %>
         <% org = ::Organizacion.where('usuarioip_id = ?', current_usuario.id).take
            url = org ? org.url_logoinst : nil  %>
