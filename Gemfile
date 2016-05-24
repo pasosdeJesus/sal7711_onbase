@@ -25,7 +25,7 @@ gem 'chosen-rails'
 
 # Tiny_TDS para MS-SQL usado por OnBase
 #gem "tiny_tds", '~> 0.6.3'
-gem 'tiny_tds', '~> 0.6.3.rc1' #, path: '../tiny_tds', ver README.md
+gem 'tiny_tds', '~> 0.6.3.rc2' #, path: '../tiny_tds', ver README.md
 
 # sambal para extraer archivos en directorio Windows usado por OnBase
 # gem "sambal"

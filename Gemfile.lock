@@ -264,7 +264,7 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     raindrops (0.15.0)
-    rake (10.4.2)
+    rake (11.1.2)
     rb-fsevent (0.9.6)
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
@@ -405,7 +405,7 @@ DEPENDENCIES
   sip!
   spring
   spring-commands-rspec
-  tiny_tds (~> 0.6.3.rc1)
+  tiny_tds (~> 0.6.3.rc2)
   turbolinks
   twitter-bootstrap-rails
   twitter_cldr
@@ -417,4 +417,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   1.10.6
+   1.12.4
