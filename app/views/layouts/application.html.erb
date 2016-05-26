@@ -47,10 +47,10 @@
       <% end %>
     <% else %>
       <%= menu_item "Ingresar", 
-          Rails.application.routes.url_helpers.new_usuario_session_url( urlop )
+          Rails.application.routes.url_helpers.new_usuario_session_url( urlop, only_path: true )
       %> 
       <%= menu_item "Inscribirse", 
-        Rails.application.routes.url_helpers.new_usuario_registration_url(urlop)
+        Rails.application.routes.url_helpers.new_usuario_registration_url(urlop, only_path: true)
       %>
     <% end %>
   <% end %>

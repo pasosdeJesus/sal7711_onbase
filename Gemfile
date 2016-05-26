@@ -25,7 +25,7 @@ gem 'chosen-rails'
 
 # Tiny_TDS para MS-SQL usado por OnBase
 #gem "tiny_tds", '~> 0.6.3'
-gem 'tiny_tds'#, '~> 0.6.3.rc1' #, path: '../tiny_tds', ver README.md
+gem 'tiny_tds', '~> 0.6.3.rc2' #, path: '../tiny_tds', ver README.md
 
 # sambal para extraer archivos en directorio Windows usado por OnBase
 # gem "sambal"
@@ -75,7 +75,7 @@ gem "simple_form"
 gem "cocoon", github: "vtamara/cocoon"
 
 # Autenticación y roles
-gem "devise"
+gem "devise", '3.5.10'
 gem "devise-i18n"
 gem "cancancan"
 gem "bcrypt"
@@ -97,7 +97,7 @@ gem "tzinfo-data"
 gem 'sip', github: 'pasosdeJesus/sip'
 #gem 'sip', path: '../sip'
 
-gem 'sal7711_gen', github: 'pasosdeJesus/sal7711_gen'
+gem 'sal7711_gen', github: 'pasosdeJesus/sal7711_gen', branch: 'padjord'
 #gem 'sal7711_gen', path: '/home/vtamara/comp/rails/sal7711_gen'
 
 group :doc do
@@ -108,7 +108,7 @@ end
 # Los siguientes son para desarrollo o para pruebas con generadores
 group :development do
   # Depurar
-  #gem 'byebug'
+  gem 'byebug'
 
   # Consola irb en páginas con excepciones o usando <%= console %> en vistas
   gem 'web-console'

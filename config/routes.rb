@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   get 'bitacora/admin' => 'sal7711_gen/bitacora#admin', as: 'bitacora_admin'
   get 'bitacora/tiempo' => 'sal7711_gen/bitacora#tiempo', as: 'bitacora_tiempo'
 
+  get 'sincroniza' => 'sal7711_gen/buscar#sincroniza', as: 'buscar_sincroniza'
 
 #	get 'buscar/:id', to: 'buscar#mostraruno'
 #	get 'buscar' => 'buscar#index'
