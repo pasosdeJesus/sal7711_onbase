@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/pasosdeJesus/sal7711_gen.git
-  revision: 2d72f2bd00a6ed1deafe0f9334948e78ad8e1edb
+  revision: f9e11c4bd1fcbcff1dcbabcf01d06e8c3159bc48
   branch: padjord
   specs:
     sal7711_gen (1.0.a2)
@@ -9,7 +9,7 @@ GIT
 
 GIT
   remote: git://github.com/pasosdeJesus/sip.git
-  revision: 4866130edc59b4b25938d55976039f99d9edc38f
+  revision: 2cfd508addf236c16724fdad3baae9cb4a61d03e
   specs:
     sip (2.0.a7)
       bootstrap-datepicker-rails
@@ -81,7 +81,7 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.4.0)
     arel (6.0.3)
-    autoprefixer-rails (6.3.6.1)
+    autoprefixer-rails (6.3.6.2)
       execjs
     bcrypt (3.1.11)
     binding_of_caller (0.7.2)
