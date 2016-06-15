@@ -1,19 +1,22 @@
 # encoding: UTF-8
 Rails.application.routes.draw do
   devise_scope :usuario do
-#    get 'usuarios/edit' => 'usuarios#devise_registrations_edit', 
-#      :as => 'editar_registro_usuario'    
-#    get 'sign_out' => 'devise/sessions#destroy'
     get 'sign_out' => 'sessions#destroy'
     get 'usuarios/sign_in' => 'sessions#new'
     get 'usuarios/sign_up' => 'registrations#new'
+
+    # El siguiente para superar mala generación del action en el formulario
+    # cuando se autentica mal (genera 
+    # /puntomontaje/puntomontaje/usuarios/sign_in )
+    if (Rails.configuration.relative_url_root != '/') 
+      ruta = File.join(Rails.configuration.relative_url_root, 
+                       'usuarios/sign_in')
+      post ruta, to: 'devise/sessions#create'
+    end
     root 'sessions#new'
   end
-#  devise_for :usuarios, :skip => [:registrations], module: :devise
   devise_for :usuarios, module: :devise, controllers: { registrations: "registrations" }
   as :usuario do
-#          get 'usuarios/edit' => 'usuarios#devise_registrations_edit', 
-#            :as => 'editar_registro_usuario'    
           get 'usuarios/edit' => 'devise/registrations#edit', 
             :as => 'editar_registro_usuario'    
           put 'usuarios/:id' => 'devise/registrations#update', 
