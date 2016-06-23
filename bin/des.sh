@@ -13,7 +13,7 @@ if (test $IPDES = "") then {
 if (test "$SININD" != "1") then {
 	PATH=$PATH:/usr/local/bin ./bin/rake sip:indices
 } fi;
-SAL7711_ONBASE_SERV=http://archivoprensa.cinep.org.co:3000 USUARIO_HBASE=hsi CLAVE_HBASE=wstinol IP_HBASE=192.168.1.4 DOMINIO=DOMINIOCINEP.local CARPETA=OnBaseData1\$ USUARIO_DOMINIO=sig CLAVE_DOMINIO=semanasanta PATH=$PATH:/usr/local/bin ./bin/rails s -b $IPDES -p $PUERTODES
+SAL7711_ONBASE_SERV=${SAL7711_ONBASE_SERV} USUARIO_HBASE=${USUARIO_HBASE} CLAVE_HBASE=${CLAVE_HBASE} IP_HBASE=${IP_HBASE} DOMINIO=${DOMINIO} CARPETA=${CARPETA} USUARIO_DOMINIO=${USUARIO_DOMINIO} CLAVE_DOMINIO=${CLAVE_DOMINIO} PATH=$PATH:/usr/local/bin ./bin/rails s -b $IPDES -p $PUERTODES
 
 
 
