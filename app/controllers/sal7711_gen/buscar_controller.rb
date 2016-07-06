@@ -454,7 +454,8 @@ module Sal7711Gen
 #          s=m[is+9..fs].to_i
 #          puts "s=#{s}"
         end
-        return [titulo, rlocal]
+        texto=''
+        return [titulo, rlocal, texto]
     end
 
     def sincroniza
