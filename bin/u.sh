@@ -57,9 +57,9 @@ if (test $? != "0") then {
 	DOAS=sudo;
 } fi;
 	
-$DOAS su ${USUARIO_AP} -c "cd /var/www/htdocs/sal7711_onbase; echo \"Corriendo sip:indices\"; RAILS_ENV=production rake sip:indices"
+$DOAS su ${USUARIO_AP} -c "cd /var/www/htdocs/sal7711_onbase; echo \"Corriendo sip:indices\"; RAILS_ENV=production bundle exec rake sip:indices"
 
-$DOAS su ${USUARIO_AP} -c "cd /var/www/htdocs/sal7711_onbase; echo \"Corriendo sip:indices\"; RAILS_ENV=production rake assets:precompile"
+$DOAS su ${USUARIO_AP} -c "cd /var/www/htdocs/sal7711_onbase; echo \"Corriendo sip:indices\"; RAILS_ENV=production bundle exec rake assets:precompile"
 
 $DOAS su ${USUARIO_AP} -c "cd /var/www/htdocs/sal7711_onbase; echo \"Iniciando unicorn...\"; SAL7711_ONBASE_SERV=${SAL7711_ONBASE_SERV} USUARIO_HBASE=${USUARIO_HBASE} CLAVE_HBASE=${CLAVE_HBASE} IP_HBASE=${IP_HBASE} DOMINIO=${DOMINIO} CARPETA='${CARPETA}' USUARIO_DOMINIO=${USUARIO_DOMINIO} CLAVE_DOMINIO=${CLAVE_DOMINIO} SECRET_KEY_BASE=${SECRET_KEY_BASE} bundle exec unicorn_rails -c ../sal7711_onbase/config/unicorn.conf.minimal.rb  -E production -D"
 

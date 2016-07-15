@@ -247,7 +247,8 @@ CREATE TABLE sal7711_gen_articulo (
     pagina character varying(20) NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    anexo_id integer NOT NULL
+    anexo_id integer NOT NULL,
+    texto text
 );
 
 
@@ -836,109 +837,6 @@ CREATE TABLE sip_ubicacion (
 
 
 --
--- Name: tmp_onbase_keytable101; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE tmp_onbase_keytable101 (
-    keywordnum integer NOT NULL,
-    keyvaluechar character varying(100)
-);
-
-
---
--- Name: tmp_onbase_keytable104; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE tmp_onbase_keytable104 (
-    keywordnum integer NOT NULL,
-    keyvaluechar character varying(100)
-);
-
-
---
--- Name: tmp_onbase_keytable108; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE tmp_onbase_keytable108 (
-    keywordnum integer NOT NULL,
-    keyvaluechar character varying(100)
-);
-
-
---
--- Name: tmp_onbase_keytable110; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE tmp_onbase_keytable110 (
-    keywordnum integer NOT NULL,
-    keyvaluechar character varying(100)
-);
-
-
---
--- Name: tmp_onbase_keytable112; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE tmp_onbase_keytable112 (
-    keywordnum integer NOT NULL,
-    keyvaluechar character varying(100)
-);
-
-
---
--- Name: tmp_onbase_keytable113; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE tmp_onbase_keytable113 (
-    keywordnum integer NOT NULL,
-    keyvaluechar character varying(100)
-);
-
-
---
--- Name: tmp_onbase_keytable114; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE tmp_onbase_keytable114 (
-    keywordnum integer NOT NULL,
-    keyvaluechar character varying(100)
-);
-
-
---
--- Name: tmp_onbase_keyxitem101; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE tmp_onbase_keyxitem101 (
-    itemnum integer,
-    keywordnum integer,
-    keysetnum integer
-);
-
-
---
--- Name: tmp_onbase_keyxitem104; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE tmp_onbase_keyxitem104 (
-    itemnum integer,
-    keywordnum integer,
-    keysetnum integer
-);
-
-
---
--- Name: tmp_onbase_keyxitem108; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE tmp_onbase_keyxitem108 (
-    itemnum integer,
-    keywordnum integer,
-    keysetnum integer
-);
-
-
---
 -- Name: usuario_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -1234,62 +1132,6 @@ ALTER TABLE ONLY sip_tdocumento
 
 
 --
--- Name: tmp_onbase_keytable101_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY tmp_onbase_keytable101
-    ADD CONSTRAINT tmp_onbase_keytable101_pkey PRIMARY KEY (keywordnum);
-
-
---
--- Name: tmp_onbase_keytable104_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY tmp_onbase_keytable104
-    ADD CONSTRAINT tmp_onbase_keytable104_pkey PRIMARY KEY (keywordnum);
-
-
---
--- Name: tmp_onbase_keytable108_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY tmp_onbase_keytable108
-    ADD CONSTRAINT tmp_onbase_keytable108_pkey PRIMARY KEY (keywordnum);
-
-
---
--- Name: tmp_onbase_keytable110_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY tmp_onbase_keytable110
-    ADD CONSTRAINT tmp_onbase_keytable110_pkey PRIMARY KEY (keywordnum);
-
-
---
--- Name: tmp_onbase_keytable112_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY tmp_onbase_keytable112
-    ADD CONSTRAINT tmp_onbase_keytable112_pkey PRIMARY KEY (keywordnum);
-
-
---
--- Name: tmp_onbase_keytable113_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY tmp_onbase_keytable113
-    ADD CONSTRAINT tmp_onbase_keytable113_pkey PRIMARY KEY (keywordnum);
-
-
---
--- Name: tmp_onbase_keytable114_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY tmp_onbase_keytable114
-    ADD CONSTRAINT tmp_onbase_keytable114_pkey PRIMARY KEY (keywordnum);
-
-
---
 -- Name: trelacion_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1569,7 +1411,7 @@ ALTER TABLE ONLY sip_ubicacion
 -- PostgreSQL database dump complete
 --
 
-SET search_path TO public, pg_catalog;
+SET search_path TO "$user",public;
 
 INSERT INTO schema_migrations (version) VALUES ('20150327104439');
 
@@ -1636,6 +1478,8 @@ INSERT INTO schema_migrations (version) VALUES ('20151016101736');
 INSERT INTO schema_migrations (version) VALUES ('20151020203421');
 
 INSERT INTO schema_migrations (version) VALUES ('20151027111828');
+
+INSERT INTO schema_migrations (version) VALUES ('20151030154458');
 
 INSERT INTO schema_migrations (version) VALUES ('20151113104833');
 

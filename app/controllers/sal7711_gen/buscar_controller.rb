@@ -296,21 +296,25 @@ module Sal7711Gen
         rutar = @client.execute(c)
         fila = rutar.first
         ruta = fila["filepath"].strip
+        rutaconv = ruta.gsub("\\", "/")
         titulo = fila["itemname"].strip
-        rlocal = rutacache + "/" + File.basename(ruta.gsub("\\", "/"))
+        rlocal = rutacache + "/" + File.basename(rutaconv)
         if (!File.exists? rlocal)
-          smbc = Sambal::Client.new(@@parsmb)
-          g = smbc.get(ruta, rlocal)
-          smbc.close
-          m = g.message.to_s.chomp
-          puts "m=#{m}"
-          is = m.index(" of size ")
-          if (is <= 0)
-            return
-          end
-          fs = m.index(" as #{rlocal}")
-          s=m[is+9..fs].to_i
-          puts "s=#{s}"
+          cmd="smbget -o #{rlocal} -p '#{ENV['CLAVE_DOMINIO']}' -w #{ENV['DOMINIO']} -u #{ENV['USUARIO_DOMINIO']} -v smb://#{ENV['IP_HBASE']}/#{ENV['CARPETA']}/#{rutaconv}"
+          puts cmd
+          r=`#{cmd}`
+#          smbc = Sambal::Client.new(@@parsmb)
+#          g = smbc.get(ruta, rlocal)
+#          smbc.close
+#          m = g.message.to_s.chomp
+#          puts "m=#{m}"
+#          is = m.index(" of size ")
+#          if (is <= 0)
+#            return
+#          end
+#          fs = m.index(" as #{rlocal}")
+#          s=m[is+9..fs].to_i
+#          puts "s=#{s}"
         end
         return [titulo, rlocal]
     end
