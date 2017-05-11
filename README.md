@@ -1,7 +1,6 @@
-# Sal7711
-[![Clima del Código](https://codeclimate.com/github/pasosdeJesus/sal7711_onbase/badges/gpa.svg)](https://codeclimate.com/github/pasosdeJesus/sal7711_onbase) [![security](https://hakiri.io/github/pasosdeJesus/sal7711_onbase/master.svg)](https://hakiri.io/github/pasosdeJesus/sal7711_onbase/master) [![Dependencias](https://gemnasium.com/pasosdeJesus/sal7711_onbase.svg)](https://gemnasium.com/pasosdeJesus/sal7711_onbase) 
+# ATENCIÓN: ESTA APLICACIÓN NO SE ESTÁ ACTUALIZANDO, SE MANTIENE COMO EJEMPLO DE COMO EMPLEAR UNA BASE DE DATOS USADA POR ONBASE
 
-Archivo de Prensa
+Archivo de Prensa usando ONBASE
 
 
 ### Requerimientos
